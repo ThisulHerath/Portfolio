@@ -60,7 +60,7 @@ export default function Contact() {
               <div className="info-icon">📄</div>
               <div>
                 <p className="info-label">Resume</p>
-                <a href="/resume.jpg" target="_blank" rel="noopener noreferrer" className="info-value">Download CV</a>
+                <a href="/resume.pdf" download="Thisul-Herath-CV.pdf" className="info-value">Download CV</a>
               </div>
             </div>
 
