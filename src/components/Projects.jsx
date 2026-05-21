@@ -75,6 +75,24 @@ const projects = [
     arch: "Java Spring Boot (MVC) • JavaScript ES6+ • Custom Linked Lists • Quick Sort • JSON Storage • Gradle • Git",
     badge: "OOP / CS",
   },
+  {
+    id: "univault",
+    emoji: "📱",
+    title: "UniVault: Academic Collaborative Resource Platform",
+    subtitle: "Full-Stack Mobile App | React Native (Expo), TypeScript, Node.js, MongoDB",
+    stack: ["React Native", "Expo", "TypeScript", "Node.js", "MongoDB", "Cloudinary"],
+    color: "#a78bfa",
+    year: "2026",
+    highlights: [
+      "Cross-platform mobile frontend with Expo Router (file-based navigation)",
+      "Multi-format upload pipeline (PDFs, images, docs) via Multer to Cloudinary CDN",
+      "7-model MongoDB database with compound text indexing & schema hooks",
+      "Secure JWT auth with Context API sync & global error-handling middlewares",
+    ],
+    desc: "A decentralized, trusted academic repository where students securely upload multi-format study documents, organize private/public collections, trigger community requests, and spin up subject-specific collaborative study groups.",
+    arch: "React Native • Expo & Expo Router • TypeScript • Axios (Auth Interceptors) • React Context API • Node.js / Express.js • MongoDB + Mongoose • Cloudinary • ESLint • Prettier • Postman • EAS Build",
+    badge: "Mobile / Full-Stack",
+  },
 ];
 
 export default function Projects() {
@@ -95,7 +113,7 @@ export default function Projects() {
           {projects.map((p, i) => (
             <div
               key={p.id}
-              className={`project-card reveal delay-${(i % 3) + 1} ${active === p.id ? "expanded" : ""}`}
+              className={`project-card ${active === p.id ? "expanded" : ""}`}
               style={{ "--card-color": p.color }}
             >
               <div className="card-top">
