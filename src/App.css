@@ -173,6 +173,14 @@ section {
 }
 
 @media (max-width: 768px) {
+  body {
+    cursor: auto;
+  }
+  .cursor,
+  .cursor-ring {
+    display: none;
+  }
+
   .section-title {
     font-size: clamp(28px, 9vw, 38px);
     line-height: 1.15;
