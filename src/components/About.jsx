@@ -27,19 +27,19 @@ export default function About() {
           <div className="about-text reveal-left">
             <p>
               I'm an undergraduate at <strong>SLIIT</strong> specializing in{" "}
-              <strong>Artificial Intelligence</strong>. Passionate about building intelligent
-              systems that solve real-world problems — from predictive ML pipelines to
-              full-stack enterprise applications.
+              <strong>Artificial Intelligence</strong>, with hands-on experience building
+              real-world software across full-stack web, mobile, and machine learning projects.
             </p>
             <p>
-              My work bridges machine learning engineering with modern web development.
-              I believe the best software isn't just functional — it's elegant, scalable,
-              and thoughtfully designed.
+              I have built enterprise-style platforms like a wildlife safari management
+              system and an intelligent retail ecosystem with forecasting, alongside a
+              React Native academic collaboration app and an NLP classification pipeline.
+              My focus is on clean architecture, secure authentication, and scalable backend logic.
             </p>
             <p>
-              When I'm not coding, I'm exploring the latest in deep learning research,
-              contributing to team projects, and preparing to make an impact as a
-              professional AI engineer.
+              I enjoy turning complex ideas into reliable products that deliver practical
+              value. I'm currently preparing to contribute as an intern in{" "}
+              <strong>AI/ML or Full-Stack Engineering</strong> roles.
             </p>
 
             <div className="about-links reveal delay-2">
