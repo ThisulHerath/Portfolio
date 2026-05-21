@@ -122,6 +122,9 @@
 .hamburger span.open:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
 @media (max-width: 768px) {
+  .navbar { padding: 12px 0; }
+  .nav-inner { padding: 0 16px; }
+  .nav-logo { font-size: 18px; }
   .hamburger { display: flex; }
   .nav-links {
     display: none;

@@ -145,3 +145,13 @@
 @media (max-width: 900px) {
   .about-grid { grid-template-columns: 1fr; gap: 48px; }
 }
+
+@media (max-width: 768px) {
+  .about { padding: 84px 16px; }
+  .section-header { margin-bottom: 32px; }
+  .about-grid { gap: 32px; }
+  .about-text p { font-size: 15px; line-height: 1.7; }
+  .timeline-item { grid-template-columns: 56px 1fr; }
+  .tl-right { padding: 0 0 24px 14px; }
+  .tl-title { font-size: 16px; }
+}

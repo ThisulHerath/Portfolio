@@ -285,3 +285,29 @@
   .hero-desc { margin: 0 auto 36px; }
   .badge-java, .badge-react, .badge-ml { display: none; }
 }
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding: 88px 16px 44px;
+  }
+  .hero-inner { gap: 28px; }
+  .hero-greeting { font-size: 15px; }
+  .hero-name { font-size: clamp(34px, 11vw, 48px); }
+  .hero-role { font-size: 16px; justify-content: center; }
+  .hero-desc { font-size: 15px; line-height: 1.65; margin-bottom: 24px; }
+  .hero-actions {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 28px;
+  }
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    justify-content: center;
+  }
+  .hero-stats { gap: 12px; flex-wrap: wrap; }
+  .stat-div { display: none; }
+  .scroll-indicator { display: none; }
+}

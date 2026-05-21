@@ -190,3 +190,15 @@ a.info-value:hover { color: var(--accent); }
   .contact-grid { grid-template-columns: 1fr; }
   .contact-form { padding: 24px; }
 }
+
+@media (max-width: 768px) {
+  .contact { padding: 84px 16px 44px; }
+  .contact-subtitle { font-size: 15px; line-height: 1.65; }
+  .contact-grid { gap: 28px; margin-top: 32px; }
+  .info-card { padding: 16px; }
+  .social-row { flex-direction: column; }
+  .social-btn { width: 100%; }
+  .contact-form { padding: 18px; border-radius: 16px; }
+  .submit-btn { width: 100%; }
+  .footer { padding: 42px 0 24px; line-height: 1.8; }
+}
