@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import "./FloatingParticles.css";
+import "./Floatingparticles.css";
 
 // Flying geometric shapes
 const shapes = ["▲", "◆", "●", "■", "✦", "⬡", "⬢"];
