@@ -1,22 +1,73 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 import { useReveal } from "../hooks/useReveal";
 import "./Contact.css";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [sent, setSent] = useState(false);
+  const formRef = useRef(null);
+  const [form, setForm] = useState({ from_name: "", reply_to: "", message: "" });
+  const [isSending, setIsSending] = useState(false);
+  const [status, setStatus] = useState({ type: "", message: "" });
+  const [lastSentEmail, setLastSentEmail] = useState("");
+  const [fieldErrors, setFieldErrors] = useState({ from_name: "", reply_to: "", message: "" });
+  const nameRef = useRef(null);
+  const emailRef = useRef(null);
+  const messageRef = useRef(null);
   const ref = useReveal();
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+    if (status.message) setStatus({ type: "", message: "" });
+    if (fieldErrors[e.target.name]) setFieldErrors({ ...fieldErrors, [e.target.name]: "" });
+  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Replace with your actual mailto or form service
-    const subject = encodeURIComponent(`Portfolio Contact from ${form.name}`);
-    const body = encodeURIComponent(`${form.message}\n\nFrom: ${form.name} <${form.email}>`);
-    window.open(`mailto:your.email@sliit.lk?subject=${subject}&body=${body}`);
-    setSent(true);
-    setTimeout(() => setSent(false), 4000);
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const errors = { from_name: "", reply_to: "", message: "" };
+
+    if (!form.from_name.trim()) errors.from_name = "Please enter your name.";
+    if (!form.reply_to.trim()) errors.reply_to = "Please enter your email address.";
+    else if (!emailPattern.test(form.reply_to.trim())) errors.reply_to = "Enter a valid email (example: name@mail.com).";
+    if (!form.message.trim()) errors.message = "Please add a short message describing your request.";
+
+    if (errors.from_name || errors.reply_to || errors.message) {
+      setFieldErrors(errors);
+      // focus first invalid field
+      if (errors.from_name) nameRef.current?.focus();
+      else if (errors.reply_to) emailRef.current?.focus();
+      else if (errors.message) messageRef.current?.focus();
+      setStatus({ type: "error", message: "Please fix the highlighted fields before sending." });
+      return;
+    }
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      setStatus({ type: "error", message: "EmailJS is not configured yet. Add your VITE_EMAILJS_* values first." });
+      return;
+    }
+
+    if (!formRef.current) return;
+
+    try {
+      setIsSending(true);
+      setStatus({ type: "", message: "" });
+
+      await emailjs.sendForm(serviceId, templateId, formRef.current, publicKey);
+
+      setLastSentEmail(form.reply_to || "");
+      setForm({ from_name: "", reply_to: "", message: "" });
+      setStatus({ type: "success", message: `Thanks — your message was sent. I'll reply to ${form.reply_to} shortly. If you don't receive a reply within a few days, please check your spam folder.` });
+      setFieldErrors({ from_name: "", reply_to: "", message: "" });
+    } catch {
+      setStatus({ type: "error", message: "Message failed to send. Check your EmailJS settings and try again." });
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -76,46 +127,60 @@ export default function Contact() {
             </div>
           </div>
 
-          <form className="contact-form reveal-right" onSubmit={handleSubmit}>
+          <form ref={formRef} noValidate className="contact-form reveal-right" onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="name">Name</label>
+              <label htmlFor="from_name">Name</label>
               <input
-                id="name"
-                name="name"
+                ref={nameRef}
+                id="from_name"
+                name="from_name"
                 type="text"
                 placeholder="Your name"
-                value={form.name}
+                value={form.from_name}
                 onChange={handleChange}
-                required
+                disabled={isSending}
+                className={fieldErrors.from_name ? "input-error" : ""}
               />
+              {fieldErrors.from_name ? <p className="field-error">{fieldErrors.from_name}</p> : null}
             </div>
             <div className="form-group">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="reply_to">Email</label>
               <input
-                id="email"
-                name="email"
+                ref={emailRef}
+                id="reply_to"
+                name="reply_to"
                 type="email"
                 placeholder="your@email.com"
-                value={form.email}
+                value={form.reply_to}
                 onChange={handleChange}
-                required
+                disabled={isSending}
+                className={fieldErrors.reply_to ? "input-error" : ""}
               />
+              {fieldErrors.reply_to ? <p className="field-error">{fieldErrors.reply_to}</p> : null}
             </div>
             <div className="form-group">
               <label htmlFor="message">Message</label>
               <textarea
+                ref={messageRef}
                 id="message"
                 name="message"
                 placeholder="Let's talk about an opportunity..."
                 value={form.message}
                 onChange={handleChange}
                 rows={5}
-                required
+                disabled={isSending}
+                className={fieldErrors.message ? "input-error" : ""}
               />
+              {fieldErrors.message ? <p className="field-error">{fieldErrors.message}</p> : null}
             </div>
-            <button type="submit" className={`submit-btn ${sent ? "sent" : ""}`}>
-              {sent ? (
-                <>✓ Opening mail client...</>
+            {status.message ? (
+              <p className={`form-status ${status.type}`} aria-live="polite">
+                {status.message}
+              </p>
+            ) : null}
+            <button type="submit" className={`submit-btn ${status.type === "success" ? "sent" : ""}`} disabled={isSending}>
+              {isSending ? (
+                <>Sending...</>
               ) : (
                 <>
                   Send Message

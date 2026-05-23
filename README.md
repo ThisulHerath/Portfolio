@@ -166,6 +166,30 @@ This portfolio is deployed on **Vercel** with automatic deployments on every pus
 - Scroll reveal animations in `useReveal.js`
 - CSS animations defined in respective component `.css` files
 
+### Contact Form with EmailJS
+
+The contact form uses EmailJS so messages are sent directly to your inbox without a backend.
+
+1. Create an account at [EmailJS](https://www.emailjs.com/).
+2. Add an email service and connect it to your Gmail account.
+3. Create an email template with these fields:
+   - `from_name`
+   - `reply_to`
+   - `message`
+4. Set the template recipient to `thisulh@gmail.com`.
+5. Copy your Service ID, Template ID, and Public Key.
+6. Add a `.env.local` file in the project root:
+
+```bash
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_template_id
+VITE_EMAILJS_PUBLIC_KEY=your_public_key
+```
+
+7. Restart the dev server after updating the env file.
+
+The form already validates the email field before it sends.
+
 ---
 
 ## 📞 Contact & Connect

@@ -8,6 +8,7 @@ const projects = [
     emoji: "🦁",
     title: "Wildlife Safari Trip Management System",
     subtitle: "Full-Stack Web Application",
+    repo: "https://github.com/ThisulHerath/Web-based-Wild-Life-Safari-Trip-Management-System",
     stack: ["Java", "Spring Boot", "MySQL", "Bootstrap", "JSP"],
     color: "#f6ad55",
     year: "2025",
@@ -26,6 +27,7 @@ const projects = [
     emoji: "🛒",
     title: "7 Super City: Intelligent Retail & Forecasting Platform",
     subtitle: "Full-Stack Engine + AI Microservice",
+    repo: "https://github.com/ThisulHerath/Web-Based-Retail-Inventory-and-Sales-Forecasting-System-with-Intelligent-Analytics-",
     stack: ["Node.js", "React", "Supabase", "Python", "Scikit-Learn", "JWT"],
     color: "var(--accent)",
     year: "2026",
@@ -44,6 +46,7 @@ const projects = [
     emoji: "🤖",
     title: "Automated NLP Text Preprocessing & Classification Pipeline",
     subtitle: "Machine Learning Engineering",
+    repo: "https://github.com/ThisulHerath/Toxic-comment-detection",
     stack: ["Python", "Scikit-Learn", "NLTK", "Imbalanced-Learn", "Jupyter"],
     color: "var(--accent2)",
     year: "2025",
@@ -62,6 +65,7 @@ const projects = [
     emoji: "📚",
     title: "Online Bookstore Management System (OBMS)",
     subtitle: "Full-Stack Web App with Custom Data Structures",
+    repo: "https://github.com/ThisulHerath/OnlineBookstore",
     stack: ["Java", "Spring Boot", "JavaScript", "Linked Lists", "QuickSort"],
     color: "var(--accent3)",
     year: "2025",
@@ -80,6 +84,7 @@ const projects = [
     emoji: "📱",
     title: "UniVault: Academic Collaborative Resource Platform",
     subtitle: "Full-Stack Mobile App | React Native (Expo), TypeScript, Node.js, MongoDB",
+    repo: "https://github.com/ThisulHerath/UNI-VAULT",
     stack: ["React Native", "Expo", "TypeScript", "Node.js", "MongoDB", "Cloudinary"],
     color: "#a78bfa",
     year: "2026",
@@ -92,6 +97,26 @@ const projects = [
     desc: "A decentralized, trusted academic repository where students securely upload multi-format study documents, organize private/public collections, trigger community requests, and spin up subject-specific collaborative study groups.",
     arch: "React Native • Expo & Expo Router • TypeScript • Axios (Auth Interceptors) • React Context API • Node.js / Express.js • MongoDB + Mongoose • Cloudinary • ESLint • Prettier • Postman • EAS Build",
     badge: "Mobile / Full-Stack",
+  },
+  {
+    id: "sethum-portfolio",
+    emoji: "🚀",
+    title: "Cyber Security & Data Analytics Portfolio",
+    subtitle: "Client Portfolio Website",
+    repo: "https://github.com/ThisulHerath/Sethum_s_Portfolio",
+    liveDemo: "https://sethum-s-portfolio.vercel.app/",
+    stack: ["React", "Vite", "Tailwind CSS", "Framer Motion", "Vercel"],
+    color: "#22c55e",
+    year: "2026",
+    highlights: [
+      "Animated matrix background with a cybersecurity-inspired visual style",
+      "Custom animated cursor and smooth section navigation",
+      "Responsive layout tuned for desktop, tablet, and mobile",
+      "Framer Motion transitions with a neon cyberpunk theme",
+    ],
+    desc: "A modern, interactive portfolio built for a friend to showcase Cyber Security, Data Analytics, and Team Leadership experience with polished motion design and a strong visual identity.",
+    arch: "React • Vite • Tailwind CSS • Framer Motion • React Icons / Lucide • React Scroll • Vercel",
+    badge: "Client Project",
   },
 ];
 
@@ -159,6 +184,30 @@ export default function Projects() {
               >
                 {active === p.id ? "Show less ↑" : "View details ↓"}
               </button>
+
+              <div className="card-links">
+                <a
+                  className="card-repo-link"
+                  href={p.repo}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ color: p.color }}
+                >
+                  View GitHub repo ↗
+                </a>
+
+                {p.liveDemo ? (
+                  <a
+                    className="card-repo-link"
+                    href={p.liveDemo}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ color: p.color }}
+                  >
+                    Live demo ↗
+                  </a>
+                ) : null}
+              </div>
 
               <div className="card-accent-line" style={{ background: p.color }} />
             </div>
