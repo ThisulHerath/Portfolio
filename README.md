@@ -6,6 +6,7 @@
 [![React](https://img.shields.io/badge/React-19.2.6-61DAFB?style=flat-square&logo=react)](https://react.dev)
 [![Vite](https://img.shields.io/badge/Vite-Latest-646CFF?style=flat-square&logo=vite)](https://vitejs.dev)
 [![Deployed on Vercel](https://img.shields.io/badge/Deployed_on-Vercel-000000?style=flat-square&logo=vercel)](https://vercel.com)
+[![Docker Hub](https://img.shields.io/badge/Docker_Hub-My_Portfolio-2496ED?style=flat-square&logo=docker)](https://hub.docker.com/repository/docker/00pizzalover00/myportfolio/general)
 
 ---
 
@@ -138,6 +139,10 @@ portfolio/
 ## 🌐 Deployment
 
 This portfolio is deployed on **Vercel** with automatic deployments on every push to the main branch.
+
+The Docker image is also published on **Docker Hub**:
+
+[View the Docker Hub repository](https://hub.docker.com/repository/docker/00pizzalover00/myportfolio/general)
 
 ### Deploy Your Own
 
