@@ -4,8 +4,29 @@ import "./Projects.css";
 
 const projects = [
   {
+    id: "churn-service",
+    emoji: "",
+    title: "Churn Prediction Service",
+    subtitle: "MLOps Pipeline + FastAPI Serving",
+    repo: "https://github.com/ThisulHerath/Telco-Customer-Churn-ML",
+    dockerImage: "https://hub.docker.com/repository/docker/00pizzalover00/churn-service/tags",
+    dataset: "https://www.kaggle.com/datasets/blastchar/telco-customer-churn",
+    stack: ["Python", "FastAPI", "Scikit-Learn", "MLflow", "Docker", "GitHub Actions"],
+    color: "#38bdf8",
+    year: "2026",
+    highlights: [
+      "End-to-end churn prediction pipeline using the Telco Customer Churn dataset",
+      "FastAPI inference service with feature alignment for reliable predictions",
+      "MLflow-tracked model artifacts and reproducible experiment metadata",
+      "CI/CD workflow builds, tests, tags, and publishes Docker images",
+    ],
+    desc: "An individual MLOps project that turns a trained customer churn model into a production-ready prediction service. It combines data preparation, feature engineering, experiment tracking, API serving, and containerized deployment.",
+    arch: "Python • FastAPI • Scikit-Learn • Pandas / NumPy • MLflow • Docker • GitHub Actions • Pytest • Kaggle Telco Customer Churn dataset",
+    badge: "Individual / MLOps",
+  },
+  {
     id: "safari",
-    emoji: "🦁",
+    emoji: "",
     title: "Wildlife Safari Trip Management System",
     subtitle: "Full-Stack Web Application",
     repo: "https://github.com/ThisulHerath/Web-based-Wild-Life-Safari-Trip-Management-System",
@@ -24,7 +45,7 @@ const projects = [
   },
   {
     id: "retail",
-    emoji: "🛒",
+    emoji: "",
     title: "7 Super City: Intelligent Retail & Forecasting Platform",
     subtitle: "Full-Stack Engine + AI Microservice",
     repo: "https://github.com/ThisulHerath/Web-Based-Retail-Inventory-and-Sales-Forecasting-System-with-Intelligent-Analytics-",
@@ -39,11 +60,11 @@ const projects = [
     ],
     desc: "An enterprise-grade retail ecosystem combining POS, real-time inventory, customer loyalty analytics, and predictive sales forecasting. A dual-engine architecture that separates transactional and ML workloads for performance.",
     arch: "React (Vite) • Tailwind CSS • Node.js / Express.js • Supabase (PostgreSQL) • Python / Scikit-Learn • Jest • Git",
-    badge: "Featured",
+    badge: "Group Project",
   },
   {
     id: "nlp",
-    emoji: "🤖",
+    emoji: "",
     title: "Automated NLP Text Preprocessing & Classification Pipeline",
     subtitle: "Machine Learning Engineering",
     repo: "https://github.com/ThisulHerath/Toxic-comment-detection",
@@ -62,7 +83,7 @@ const projects = [
   },
   {
     id: "bookstore",
-    emoji: "📚",
+    emoji: "",
     title: "Online Bookstore Management System (OBMS)",
     subtitle: "Full-Stack Web App with Custom Data Structures",
     repo: "https://github.com/ThisulHerath/OnlineBookstore",
@@ -77,11 +98,11 @@ const projects = [
     ],
     desc: "A first-year OOP module project showcasing core CS fundamentals — custom data structures and algorithmic thinking alongside a real enterprise MVC application built in Java Spring Boot.",
     arch: "Java Spring Boot (MVC) • JavaScript ES6+ • Custom Linked Lists • Quick Sort • JSON Storage • Gradle • Git",
-    badge: "OOP / CS",
+    badge: "OOP / CS / Group Project",
   },
   {
     id: "univault",
-    emoji: "📱",
+    emoji: "",
     title: "UniVault: Academic Collaborative Resource Platform",
     subtitle: "Full-Stack Mobile App | React Native (Expo), TypeScript, Node.js, MongoDB",
     repo: "https://github.com/ThisulHerath/UNI-VAULT",
@@ -96,11 +117,11 @@ const projects = [
     ],
     desc: "A decentralized, trusted academic repository where students securely upload multi-format study documents, organize private/public collections, trigger community requests, and spin up subject-specific collaborative study groups.",
     arch: "React Native • Expo & Expo Router • TypeScript • Axios (Auth Interceptors) • React Context API • Node.js / Express.js • MongoDB + Mongoose • Cloudinary • ESLint • Prettier • Postman • EAS Build",
-    badge: "Mobile / Full-Stack",
+    badge: "Mobile / Full-Stack / Group Project",
   },
   {
     id: "sethum-portfolio",
-    emoji: "🚀",
+    emoji: "",
     title: "Cyber Security & Data Analytics Portfolio",
     subtitle: "Client Portfolio Website",
     repo: "https://github.com/ThisulHerath/Sethum_s_Portfolio",
@@ -135,7 +156,7 @@ export default function Projects() {
         </div>
 
         <div className="projects-grid">
-          {projects.map((p, i) => (
+          {projects.map((p) => (
             <div
               key={p.id}
               className={`project-card ${active === p.id ? "expanded" : ""}`}
@@ -186,15 +207,17 @@ export default function Projects() {
               </button>
 
               <div className="card-links">
-                <a
-                  className="card-repo-link"
-                  href={p.repo}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{ color: p.color }}
-                >
-                  View GitHub repo ↗
-                </a>
+                {p.repo ? (
+                  <a
+                    className="card-repo-link"
+                    href={p.repo}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ color: p.color }}
+                  >
+                    View GitHub repo ↗
+                  </a>
+                ) : null}
 
                 {p.liveDemo ? (
                   <a
@@ -205,6 +228,30 @@ export default function Projects() {
                     style={{ color: p.color }}
                   >
                     Live demo ↗
+                  </a>
+                ) : null}
+
+                {p.dockerImage ? (
+                  <a
+                    className="card-repo-link"
+                    href={p.dockerImage}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ color: p.color }}
+                  >
+                    Docker image ↗
+                  </a>
+                ) : null}
+
+                {p.dataset ? (
+                  <a
+                    className="card-repo-link"
+                    href={p.dataset}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ color: p.color }}
+                  >
+                    Dataset ↗
                   </a>
                 ) : null}
               </div>

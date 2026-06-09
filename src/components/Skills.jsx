@@ -7,10 +7,10 @@ const skillGroups = [
     icon: "🤖",
     color: "var(--accent)",
     skills: [
-      { name: "Python (Scikit-Learn, NumPy, Pandas)", level: 82 },
+      { name: "Python (Scikit-Learn, NumPy, Pandas)", level: 85 },
       { name: "NLP & Text Preprocessing (NLTK)", level: 78 },
-      { name: "Feature Engineering / PCA", level: 72 },
-      { name: "Model Training & Evaluation", level: 80 },
+      { name: "Feature Engineering / PCA", level: 76 },
+      { name: "Model Training, Evaluation & MLflow", level: 82 },
     ],
   },
   {
@@ -19,7 +19,7 @@ const skillGroups = [
     color: "var(--accent2)",
     skills: [
       { name: "Java Spring Boot (REST, MVC, JPA)", level: 85 },
-      { name: "Node.js / Express.js", level: 78 },
+      { name: "Node.js / Express.js / FastAPI", level: 80 },
       { name: "MySQL / PostgreSQL", level: 80 },
       { name: "REST API Design", level: 88 },
     ],
@@ -41,17 +41,18 @@ const skillGroups = [
     color: "#f6ad55",
     skills: [
       { name: "Git / GitHub", level: 85 },
-      { name: "Maven / Gradle", level: 72 },
-      { name: "Jupyter Notebook", level: 80 },
-      { name: "Jest (Unit Testing)", level: 68 },
+      { name: "Docker & Containerized Deployment", level: 78 },
+      { name: "GitHub Actions CI/CD", level: 74 },
+      { name: "Pytest / Jest Testing", level: 72 },
     ],
   },
 ];
 
 const techBadges = [
   "Python", "Java", "Node.js", "React", "Spring Boot",
-  "Scikit-Learn", "NLTK", "PostgreSQL", "MySQL", "Supabase",
-  "JWT", "REST API", "Git", "Tailwind", "Vite", "Express.js"
+  "FastAPI", "Scikit-Learn", "MLflow", "Docker", "GitHub Actions",
+  "NLTK", "PostgreSQL", "MySQL", "Supabase", "JWT", "REST API",
+  "Git", "Tailwind", "Vite", "Express.js"
 ];
 
 export default function Skills() {

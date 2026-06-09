@@ -7,6 +7,7 @@ const timeline = [
   { year: "2025", title: "Online Bookstore Management System (OBMS)", org: "Academic Project", desc: "Developed comprehensive e-commerce platform with inventory and payment integration" },
   { year: "2025", title: "Automated NLP Text Preprocessing & Classification Pipeline", org: "ML Project", desc: "Built end-to-end NLP pipeline for text classification using deep learning models" },
   { year: "2026", title: "7 Super City: Intelligent Retail & Forecasting Platform", org: "Industry Project", desc: "Architected dual-engine system combining ML forecasting with retail analytics" },
+  { year: "2026", title: "Churn Prediction Service", org: "Individual MLOps Project", desc: "Built a FastAPI prediction service with MLflow tracking, Docker packaging, and CI/CD publishing" },
   { year: "2026", title: "Cyber Security & Data Analytics Portfolio", org: "Client Project", desc: "Created a modern cyber-security themed portfolio with animations, responsive design, and live deployment" },
   { year: "2026", title: "Seeking Internship", org: "Open to Opportunities", desc: "Actively looking for AI / ML / Full-Stack engineering roles" },
 ];
@@ -35,8 +36,9 @@ export default function About() {
               I have built enterprise-style platforms like a wildlife safari management
               system and an intelligent retail ecosystem with forecasting, alongside a
               React Native academic collaboration app, an NLP classification pipeline,
-              and a modern cyber security portfolio for a friend. My focus is on clean
-              architecture, secure authentication, and scalable backend logic.
+              and a production-ready churn prediction service with FastAPI, MLflow,
+              Docker, and CI/CD. My focus is on clean architecture, secure
+              authentication, scalable backend logic, and deployable ML systems.
             </p>
             <p>
               I enjoy turning complex ideas into reliable products that deliver practical
