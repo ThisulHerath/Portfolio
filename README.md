@@ -80,7 +80,7 @@ portfolio/
 
 ### Prerequisites
 - Node.js 22.12.0 or higher
-- npm or yarn
+- npm 
 
 ### Installation
 
