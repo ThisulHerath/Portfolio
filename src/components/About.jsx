@@ -2,14 +2,10 @@ import { useReveal } from "../hooks/useReveal";
 import "./About.css";
 
 const timeline = [
-  { year: "2024", title: "Started BSc IT (AI)", org: "SLIIT", desc: "Began specializing in Artificial Intelligence and Machine Learning" },
-  { year: "2025", title: "Wildlife Safari Trip Management System", org: "Group Project", desc: "Led backend development for a full-stack Java Spring Boot application" },
-  { year: "2025", title: "Online Bookstore Management System (OBMS)", org: "Academic Project", desc: "Developed comprehensive e-commerce platform with inventory and payment integration" },
-  { year: "2025", title: "Automated NLP Text Preprocessing & Classification Pipeline", org: "ML Project", desc: "Built end-to-end NLP pipeline for text classification using deep learning models" },
-  { year: "2026", title: "7 Super City: Intelligent Retail & Forecasting Platform", org: "Industry Project", desc: "Architected dual-engine system combining ML forecasting with retail analytics" },
-  { year: "2026", title: "Churn Prediction Service", org: "Individual MLOps Project", desc: "Built a FastAPI prediction service with MLflow tracking, Docker packaging, and CI/CD publishing" },
-  { year: "2026", title: "Cyber Security & Data Analytics Portfolio", org: "Client Project", desc: "Created a modern cyber-security themed portfolio with animations, responsive design, and live deployment" },
-  { year: "2026", title: "Seeking Internship", org: "Open to Opportunities", desc: "Actively looking for AI / ML / Full-Stack engineering roles" },
+  { year: "2024", title: "Started BSc IT (AI)", org: "SLIIT", desc: "Began specializing in artificial intelligence, machine learning, and software engineering." },
+  { year: "2025", title: "Built an NLP Classification Pipeline", org: "Machine Learning", desc: "Applied text preprocessing, TF-IDF, imbalance handling, model tuning, and evaluation to toxic-comment classification." },
+  { year: "2026", title: "Moved Models Toward Production", org: "MLOps", desc: "Built a churn prediction service with FastAPI, MLflow, Docker, automated tests, and CI/CD publishing." },
+  { year: "Now", title: "Seeking an AI / ML Internship", org: "Open to Opportunities", desc: "Looking to contribute to applied AI, ML engineering, MLOps, or software teams building intelligent products." },
 ];
 
 export default function About() {
@@ -22,28 +18,25 @@ export default function About() {
       <div className="about-inner">
         <div className="section-header reveal">
           <span className="tag">// about me</span>
-          <h2 className="section-title">Shaping the Future<br /><span className="gradient-text">with Intelligence</span></h2>
+          <h2 className="section-title">From Experiments to<br /><span className="gradient-text">Useful AI Systems</span></h2>
         </div>
 
         <div className="about-grid">
           <div className="about-text reveal-left">
             <p>
-              I'm an undergraduate at <strong>SLIIT</strong> specializing in{" "}
-              <strong>Artificial Intelligence</strong>, with hands-on experience building
-              real-world software across full-stack web, mobile, and machine learning projects.
+              I'm an <strong>Artificial Intelligence undergraduate at SLIIT</strong> interested in
+              the full journey from data and experimentation to dependable software people can use.
             </p>
             <p>
-              I have built enterprise-style platforms like a wildlife safari management
-              system and an intelligent retail ecosystem with forecasting, alongside a
-              React Native academic collaboration app, an NLP classification pipeline,
-              and a production-ready churn prediction service with FastAPI, MLflow,
-              Docker, and CI/CD. My focus is on clean architecture, secure
-              authentication, scalable backend logic, and deployable ML systems.
+              My work includes an MLOps-ready churn service, an NLP classification pipeline,
+              retail sales forecasting, computer-vision emotion detection, and an agentic
+              solar-planning platform. I enjoy connecting models to APIs, interfaces,
+              automated delivery pipelines, and well-structured application code.
             </p>
             <p>
-              I enjoy turning complex ideas into reliable products that deliver practical
-              value. I'm currently preparing to contribute as an intern in{" "}
-              <strong>AI/ML or Full-Stack Engineering</strong> roles.
+              I'm currently looking for an internship where I can contribute to{" "}
+              <strong>AI engineering, machine learning, MLOps, or software engineering</strong>
+              while learning from an experienced product team.
             </p>
 
             <div className="about-links reveal delay-2">
@@ -54,6 +47,10 @@ export default function About() {
               <a href="https://www.linkedin.com/in/thisul/?skipRedirect=true" target="_blank" rel="noopener noreferrer" className="about-link">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                 LinkedIn
+              </a>
+              <a href="https://www.kaggle.com/thisulherath" target="_blank" rel="noopener noreferrer" className="about-link">
+                <span aria-hidden="true">K</span>
+                Kaggle
               </a>
             </div>
           </div>

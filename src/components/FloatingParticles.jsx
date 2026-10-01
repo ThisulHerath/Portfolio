@@ -24,20 +24,19 @@ export default function FloatingParticles() {
   const canvasRef = useRef(null);
   const [objects] = useState(() => generateObjects(30));
   const mouseRef = useRef({ x: 0, y: 0 });
-  const cursorRef = useRef(null);
-  const ringRef = useRef(null);
   const rafRef = useRef(null);
 
   useEffect(() => {
+    const supportsCustomCursor = window.matchMedia("(pointer: fine)").matches
+      && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!supportsCustomCursor) return undefined;
+
     const cursor = document.createElement("div");
     cursor.className = "cursor";
     const ring = document.createElement("div");
     ring.className = "cursor-ring";
     document.body.appendChild(cursor);
     document.body.appendChild(ring);
-    cursorRef.current = cursor;
-    ringRef.current = ring;
-
     let ringX = 0, ringY = 0;
 
     const moveCursor = (e) => {
@@ -89,8 +88,14 @@ export default function FloatingParticles() {
     let W, H;
 
     const resize = () => {
-      W = canvas.width = window.innerWidth;
-      H = canvas.height = window.innerHeight * 3;
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      W = window.innerWidth;
+      H = window.innerHeight;
+      canvas.width = Math.round(W * ratio);
+      canvas.height = Math.round(H * ratio);
+      canvas.style.width = `${W}px`;
+      canvas.style.height = `${H}px`;
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
       drawGrid();
     };
 
@@ -119,7 +124,7 @@ export default function FloatingParticles() {
   }, []);
 
   return (
-    <div className="particles-container">
+    <div className="particles-container" aria-hidden="true">
       <canvas ref={canvasRef} className="grid-canvas" />
       {objects.map((obj) => (
         <div

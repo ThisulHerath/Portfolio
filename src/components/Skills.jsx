@@ -3,56 +3,43 @@ import "./Skills.css";
 
 const skillGroups = [
   {
-    category: "AI / Machine Learning",
+    category: "Machine Learning",
     icon: "🤖",
     color: "var(--accent)",
-    skills: [
-      { name: "Python (Scikit-Learn, NumPy, Pandas)", level: 85 },
-      { name: "NLP & Text Preprocessing (NLTK)", level: 78 },
-      { name: "Feature Engineering / PCA", level: 76 },
-      { name: "Model Training, Evaluation & MLflow", level: 82 },
-    ],
+    focus: "Building reproducible pipelines from raw data through evaluation.",
+    skills: ["Scikit-Learn", "Pandas", "NumPy", "Feature Engineering", "Model Evaluation"],
+    evidence: "Applied in churn prediction, retail forecasting, and classification projects.",
   },
   {
-    category: "Backend Development",
+    category: "NLP & Applied AI",
     icon: "⚙️",
     color: "var(--accent2)",
-    skills: [
-      { name: "Java Spring Boot (REST, MVC, JPA)", level: 85 },
-      { name: "Node.js / Express.js / FastAPI", level: 80 },
-      { name: "MySQL / PostgreSQL", level: 80 },
-      { name: "REST API Design", level: 88 },
-    ],
+    focus: "Exploring intelligent systems that solve practical user problems.",
+    skills: ["NLTK", "TF-IDF", "LinearSVC", "OpenCV", "LangGraph"],
+    evidence: "Built toxic-comment classification, emotion detection, and agent-based planning flows.",
   },
   {
-    category: "Frontend Development",
+    category: "MLOps & AI Services",
     icon: "🎨",
     color: "var(--accent3)",
-    skills: [
-      { name: "React (Vite, Context API, Hooks)", level: 82 },
-      { name: "HTML5 / CSS3 / JavaScript", level: 88 },
-      { name: "Tailwind CSS / Bootstrap", level: 80 },
-      { name: "JSP / Responsive Design", level: 75 },
-    ],
+    focus: "Turning trained models into testable and deployable services.",
+    skills: ["FastAPI", "MLflow", "Docker", "GitHub Actions", "Pytest"],
+    evidence: "Packaged and published a containerized churn prediction API with automated CI/CD.",
   },
   {
-    category: "DevOps & Tools",
+    category: "Software Engineering",
     icon: "🛠️",
     color: "#f6ad55",
-    skills: [
-      { name: "Git / GitHub", level: 85 },
-      { name: "Docker & Containerized Deployment", level: 78 },
-      { name: "GitHub Actions CI/CD", level: 74 },
-      { name: "Pytest / Jest Testing", level: 72 },
-    ],
+    focus: "Building the APIs, interfaces, and data layers around AI products.",
+    skills: ["Python", "TypeScript", "React", "Node.js", "ASP.NET Core", "Spring Boot"],
+    evidence: "Worked across web, mobile, REST APIs, authentication, SQL, and NoSQL systems.",
   },
 ];
 
 const techBadges = [
-  "Python", "Java", "Node.js", "React", "Spring Boot",
-  "FastAPI", "Scikit-Learn", "MLflow", "Docker", "GitHub Actions",
-  "NLTK", "PostgreSQL", "MySQL", "Supabase", "JWT", "REST API",
-  "Git", "Tailwind", "Vite", "Express.js"
+  "Python", "Scikit-Learn", "Pandas", "NLTK", "OpenCV", "LangGraph",
+  "FastAPI", "MLflow", "Docker", "GitHub Actions", "Pytest", "React",
+  "TypeScript", "Node.js", "ASP.NET Core", "Spring Boot", "PostgreSQL", "MongoDB"
 ];
 
 export default function Skills() {
@@ -65,7 +52,7 @@ export default function Skills() {
       <div className="skills-inner">
         <div className="section-header reveal">
           <span className="tag">// skills & tools</span>
-          <h2 className="section-title">Technical <span className="gradient-text">Arsenal</span></h2>
+          <h2 className="section-title">What I Use to <span className="gradient-text">Build AI Products</span></h2>
         </div>
 
         <div className="skills-grid">
@@ -75,25 +62,13 @@ export default function Skills() {
                 <span className="skill-icon">{group.icon}</span>
                 <h3 className="skill-category" style={{ color: group.color }}>{group.category}</h3>
               </div>
-              <div className="skill-bars">
-                {group.skills.map((skill, si) => (
-                  <div key={si} className="skill-item">
-                    <div className="skill-meta">
-                      <span className="skill-name">{skill.name}</span>
-                      <span className="skill-pct" style={{ color: group.color }}>{skill.level}%</span>
-                    </div>
-                    <div className="skill-track">
-                      <div
-                        className="skill-fill"
-                        style={{
-                          "--width": `${skill.level}%`,
-                          "--color": group.color,
-                        }}
-                      />
-                    </div>
-                  </div>
+              <p className="skill-focus">{group.focus}</p>
+              <div className="skill-list" aria-label={`${group.category} tools`}>
+                {group.skills.map((skill) => (
+                  <span key={skill} className="skill-chip">{skill}</span>
                 ))}
               </div>
+              <p className="skill-evidence"><span>Evidence</span>{group.evidence}</p>
             </div>
           ))}
         </div>

@@ -19,22 +19,31 @@ export default function Navbar({ activeSection }) {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
+  useEffect(() => {
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, []);
+
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setMenuOpen(false);
   };
 
   return (
-    <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
+    <nav className={`navbar ${scrolled ? "scrolled" : ""}`} aria-label="Primary navigation">
       <div className="nav-inner">
-        <button className="nav-logo" onClick={() => scrollTo("hero")}>
+        <button className="nav-logo" onClick={() => scrollTo("hero")} aria-label="Go to home section">
           <span className="logo-bracket">&lt;</span>
           <span className="logo-name">AI</span>
           <span className="logo-slash">/</span>
           <span className="logo-bracket">&gt;</span>
         </button>
 
-        <div className={`nav-links ${menuOpen ? "open" : ""}`}>
+        <div id="primary-menu" className={`nav-links ${menuOpen ? "open" : ""}`}>
           {links.map((link) => (
             <button
               key={link.id}
@@ -54,7 +63,13 @@ export default function Navbar({ activeSection }) {
           </a>
         </div>
 
-        <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+        <button
+          className="hamburger"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={menuOpen}
+          aria-controls="primary-menu"
+        >
           <span className={menuOpen ? "open" : ""}></span>
           <span className={menuOpen ? "open" : ""}></span>
           <span className={menuOpen ? "open" : ""}></span>

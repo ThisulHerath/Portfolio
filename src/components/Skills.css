@@ -56,47 +56,46 @@
   letter-spacing: -0.01em;
 }
 
-.skill-bars { display: flex; flex-direction: column; gap: 16px; }
-
-.skill-item { display: flex; flex-direction: column; gap: 6px; }
-
-.skill-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.skill-name {
-  font-size: 13px;
+.skill-focus {
   color: var(--muted);
-  font-family: var(--font-body);
-  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.65;
+  margin-bottom: 18px;
 }
 
-.skill-pct {
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.skill-chip {
+  padding: 6px 10px;
+  border-radius: 7px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.035);
+  color: var(--text);
   font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 500;
 }
 
-.skill-track {
-  height: 4px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 2px;
-  overflow: hidden;
+.skill-evidence {
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
 }
 
-.skill-fill {
-  height: 100%;
-  width: 0;
-  background: var(--color, var(--accent));
-  border-radius: 2px;
-  transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-  box-shadow: 0 0 10px var(--color, var(--accent));
-}
-
-.skill-card.visible .skill-fill {
-  width: var(--width);
+.skill-evidence span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 /* Tech badges */

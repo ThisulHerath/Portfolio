@@ -8,7 +8,6 @@ export default function Contact() {
   const [form, setForm] = useState({ from_name: "", reply_to: "", message: "" });
   const [isSending, setIsSending] = useState(false);
   const [status, setStatus] = useState({ type: "", message: "" });
-  const [lastSentEmail, setLastSentEmail] = useState("");
   const [fieldErrors, setFieldErrors] = useState({ from_name: "", reply_to: "", message: "" });
   const nameRef = useRef(null);
   const emailRef = useRef(null);
@@ -59,7 +58,6 @@ export default function Contact() {
 
       await emailjs.sendForm(serviceId, templateId, formRef.current, publicKey);
 
-      setLastSentEmail(form.reply_to || "");
       setForm({ from_name: "", reply_to: "", message: "" });
       setStatus({ type: "success", message: `Thanks — your message was sent. I'll reply to ${form.reply_to} shortly. If you don't receive a reply within a few days, please check your spam folder.` });
       setFieldErrors({ from_name: "", reply_to: "", message: "" });
@@ -77,10 +75,10 @@ export default function Contact() {
       <div className="contact-inner">
         <div className="section-header reveal" style={{ textAlign: "center" }}>
           <span className="tag">// contact</span>
-          <h2 className="section-title">Let's Build Something <span className="gradient-text">Together</span></h2>
+          <h2 className="section-title">Looking for an AI Intern? <span className="gradient-text">Let's Talk.</span></h2>
           <p className="contact-subtitle">
-            Currently seeking internship opportunities in AI, ML, or Full-Stack Engineering.
-            <br />Open to collaborations, research, and interesting conversations.
+            I'm currently seeking AI engineering, machine learning, MLOps, or software engineering internships.
+            <br />I'm also open to applied-AI collaborations and research conversations.
           </p>
         </div>
 
@@ -164,7 +162,7 @@ export default function Contact() {
                 ref={messageRef}
                 id="message"
                 name="message"
-                placeholder="Let's talk about an opportunity..."
+                placeholder="Tell me about the internship, project, or team..."
                 value={form.message}
                 onChange={handleChange}
                 rows={5}

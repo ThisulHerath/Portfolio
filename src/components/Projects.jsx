@@ -2,12 +2,38 @@ import { useState } from "react";
 import { useReveal } from "../hooks/useReveal";
 import "./Projects.css";
 
+const filters = [
+  { id: "all", label: "Selected work" },
+  { id: "ai", label: "AI / ML" },
+  { id: "software", label: "Software engineering" },
+];
+
 const projects = [
   {
+    id: "smart-solar",
+    category: "ai",
+    featured: true,
+    title: "Smart Solar Installation & Grid Compliance Platform",
+    subtitle: "Agentic planning system + multi-client product",
+    repo: "https://github.com/ThisulHerath/Smart-Solar-Installation-Grid-Compliance-Platform",
+    stack: ["LangGraph", "FastAPI", "Python", "ASP.NET Core", "React", "Flutter"],
+    color: "#f6ad55",
+    year: "2026",
+    highlights: [
+      "Deterministic LangGraph agents for solar sizing, compliance screening, safety checks, and equipment planning",
+      "Internal FastAPI AI service behind a single ASP.NET Core client-facing gateway",
+      "React staff console plus Flutter workflows for homeowners and field technicians",
+      "PostgreSQL persistence, JWT role controls, audit history, tests, Docker, and separate CI workflows",
+    ],
+    desc: "A team-built solar planning platform that connects homeowner surveys, site inspection, engineering review, pricing, and grid-compliance checks through a carefully separated AI service and product architecture.",
+    badge: "Featured • AI Systems",
+  },
+  {
     id: "churn-service",
-    emoji: "",
+    category: "ai",
+    featured: true,
     title: "Churn Prediction Service",
-    subtitle: "MLOps Pipeline + FastAPI Serving",
+    subtitle: "From model experiment to deployable API",
     repo: "https://github.com/ThisulHerath/Telco-Customer-Churn-ML",
     dockerImage: "https://hub.docker.com/repository/docker/00pizzalover00/churn-service/tags",
     dataset: "https://www.kaggle.com/datasets/blastchar/telco-customer-churn",
@@ -15,250 +41,189 @@ const projects = [
     color: "#38bdf8",
     year: "2026",
     highlights: [
-      "End-to-end churn prediction pipeline using the Telco Customer Churn dataset",
-      "FastAPI inference service with feature alignment for reliable predictions",
-      "MLflow-tracked model artifacts and reproducible experiment metadata",
-      "CI/CD workflow builds, tests, tags, and publishes Docker images",
+      "End-to-end preparation, feature engineering, model training, and inference workflow",
+      "FastAPI prediction service with saved feature alignment for reliable requests",
+      "MLflow experiment artifacts and reproducible model metadata",
+      "Automated tests, image builds, tagging, and Docker Hub publishing through GitHub Actions",
     ],
-    desc: "An individual MLOps project that turns a trained customer churn model into a production-ready prediction service. It combines data preparation, feature engineering, experiment tracking, API serving, and containerized deployment.",
-    arch: "Python • FastAPI • Scikit-Learn • Pandas / NumPy • MLflow • Docker • GitHub Actions • Pytest • Kaggle Telco Customer Churn dataset",
-    badge: "Individual / MLOps",
-  },
-  {
-    id: "safari",
-    emoji: "",
-    title: "Wildlife Safari Trip Management System",
-    subtitle: "Full-Stack Web Application",
-    repo: "https://github.com/ThisulHerath/Web-based-Wild-Life-Safari-Trip-Management-System",
-    stack: ["Java", "Spring Boot", "MySQL", "Bootstrap", "JSP"],
-    color: "#f6ad55",
-    year: "2025",
-    highlights: [
-      "Multi-Role RBAC for 6 stakeholder types",
-      "Automated vehicle & guide scheduling engine",
-      "Transactional finance & invoice module",
-      "Async customer feedback reporting system",
-    ],
-    desc: "A collaborative web platform that digitalizes end-to-end wildlife safari operations. Centralizes trip bookings, automates resource allocation, and provides real-time financial tracking — eliminating manual coordination errors.",
-    arch: "Java Spring Boot (MVC, RESTful APIs, Hibernate/JPA) • MySQL • Bootstrap • JSP • Maven • Git",
-    badge: "Group Project",
+    desc: "An individual MLOps project that takes customer churn analysis beyond a notebook and packages it as a tested, containerized prediction service.",
+    badge: "Featured • Individual",
   },
   {
     id: "retail",
-    emoji: "",
-    title: "7 Super City: Intelligent Retail & Forecasting Platform",
-    subtitle: "Full-Stack Engine + AI Microservice",
+    category: "ai",
+    featured: true,
+    title: "7 Super City: Retail Forecasting Platform",
+    subtitle: "Operational software with ML forecasting",
     repo: "https://github.com/ThisulHerath/Web-Based-Retail-Inventory-and-Sales-Forecasting-System-with-Intelligent-Analytics-",
-    stack: ["Node.js", "React", "Supabase", "Python", "Scikit-Learn", "JWT"],
-    color: "var(--accent)",
+    stack: ["Python", "Scikit-Learn", "React", "Express", "Supabase", "Jest"],
+    color: "#68d391",
     year: "2026",
     highlights: [
-      "Dual-engine: Express.js API + Python ML microservice",
-      "RBAC across 4 portals using JWT + Bcrypt",
-      "Supabase (PostgreSQL) with Row-Level Security (15+ tables)",
-      "AI sales forecasting with Scikit-Learn time-series models",
+      "Python forecasting service integrated with a full retail application",
+      "Sales analytics, stock visibility, low-stock alerts, and prediction workflows",
+      "Role-based portals for operational users with JWT authentication",
+      "PostgreSQL-backed inventory, customer, supplier, finance, and loyalty modules",
     ],
-    desc: "An enterprise-grade retail ecosystem combining POS, real-time inventory, customer loyalty analytics, and predictive sales forecasting. A dual-engine architecture that separates transactional and ML workloads for performance.",
-    arch: "React (Vite) • Tailwind CSS • Node.js / Express.js • Supabase (PostgreSQL) • Python / Scikit-Learn • Jest • Git",
-    badge: "Group Project",
+    desc: "A team project combining sales forecasting with the everyday workflows of a retail system, demonstrating how an ML capability fits inside a larger software product.",
+    badge: "Featured • Forecasting",
   },
   {
     id: "nlp",
-    emoji: "",
-    title: "Automated NLP Text Preprocessing & Classification Pipeline",
-    subtitle: "Machine Learning Engineering",
+    category: "ai",
+    title: "Toxic Comment Classification Pipeline",
+    subtitle: "NLP preprocessing, tuning, and evaluation",
     repo: "https://github.com/ThisulHerath/Toxic-comment-detection",
-    stack: ["Python", "Scikit-Learn", "NLTK", "Imbalanced-Learn", "Jupyter"],
-    color: "var(--accent2)",
+    stack: ["Python", "Scikit-Learn", "NLTK", "TF-IDF", "LinearSVC"],
+    color: "#a78bfa",
     year: "2025",
     highlights: [
-      "End-to-end NLP pipeline from raw text to trained model",
-      "TF-IDF vectorization + PCA dimensionality reduction",
-      "RandomOverSampler for class imbalance mitigation",
-      "GridSearchCV hyperparameter tuning + SVM / LinearSVC",
+      "Text cleaning, tokenization, stop-word handling, and TF-IDF feature extraction",
+      "Class-imbalance handling with RandomOverSampler",
+      "SVM and LinearSVC experiments with GridSearchCV tuning",
+      "Evaluation using accuracy, precision, recall, F1, and confusion matrices",
     ],
-    desc: "A production-like ML pipeline that ingests raw unstructured text and outputs high-performing classification models. Implements a strict sequence of preprocessing, feature extraction, dimensionality reduction, and model optimization.",
-    arch: "Python 3 • NumPy / Pandas • Scikit-Learn • NLTK • Imbalanced-Learn • Jupyter Notebook",
-    badge: "ML / AI",
+    desc: "A notebook-based NLP pipeline that turns raw comments into evaluated classification models through a repeatable preprocessing and model-selection workflow.",
+    badge: "NLP • Machine Learning",
   },
   {
-    id: "bookstore",
-    emoji: "",
-    title: "Online Bookstore Management System (OBMS)",
-    subtitle: "Full-Stack Web App with Custom Data Structures",
-    repo: "https://github.com/ThisulHerath/OnlineBookstore",
-    stack: ["Java", "Spring Boot", "JavaScript", "Linked Lists", "QuickSort"],
-    color: "var(--accent3)",
-    year: "2025",
+    id: "emotion-detector",
+    category: "ai",
+    title: "Facial Emotion Detector",
+    subtitle: "Computer-vision inference with a web interface",
+    repo: "https://github.com/ThisulHerath/EMOTION_DETECTOR",
+    stack: ["Python", "FastAPI", "OpenCV", "FER", "React", "Vite"],
+    color: "#fb7185",
+    year: "2026",
     highlights: [
-      "Custom Linked List data structure for data storage",
-      "In-memory QuickSort for multi-criteria inventory sorting",
-      "6 core modules: Author, Book, Cart, Order, Review, User",
-      "MVC architecture with JSON file I/O",
+      "Image-upload workflow for facial emotion analysis",
+      "FastAPI endpoint returning the dominant emotion and confidence distribution",
+      "OpenCV and FER-based inference with explicit no-face handling",
+      "React interface for uploading images and presenting results",
     ],
-    desc: "A first-year OOP module project showcasing core CS fundamentals — custom data structures and algorithmic thinking alongside a real enterprise MVC application built in Java Spring Boot.",
-    arch: "Java Spring Boot (MVC) • JavaScript ES6+ • Custom Linked Lists • Quick Sort • JSON Storage • Gradle • Git",
-    badge: "OOP / CS / Group Project",
+    desc: "A compact applied-AI project that connects computer-vision inference to a simple, understandable user experience.",
+    badge: "Computer Vision",
   },
   {
     id: "univault",
-    emoji: "",
-    title: "UniVault: Academic Collaborative Resource Platform",
-    subtitle: "Full-Stack Mobile App | React Native (Expo), TypeScript, Node.js, MongoDB",
+    category: "software",
+    title: "UniVault: Academic Resource Platform",
+    subtitle: "Cross-platform mobile software system",
     repo: "https://github.com/ThisulHerath/UNI-VAULT",
-    stack: ["React Native", "Expo", "TypeScript", "Node.js", "MongoDB", "Cloudinary"],
-    color: "#a78bfa",
+    stack: ["React Native", "TypeScript", "Expo", "Node.js", "MongoDB", "Cloudinary"],
+    color: "#60a5fa",
     year: "2026",
     highlights: [
-      "Cross-platform mobile frontend with Expo Router (file-based navigation)",
-      "Multi-format upload pipeline (PDFs, images, docs) via Multer to Cloudinary CDN",
-      "7-model MongoDB database with compound text indexing & schema hooks",
-      "Secure JWT auth with Context API sync & global error-handling middlewares",
+      "Multi-format academic resource uploads backed by Cloudinary",
+      "Searchable notes, collections, reviews, requests, and study groups",
+      "JWT authentication with client-side session synchronization",
+      "Seven-model MongoDB data layer with indexes, hooks, and structured API flows",
     ],
-    desc: "A decentralized, trusted academic repository where students securely upload multi-format study documents, organize private/public collections, trigger community requests, and spin up subject-specific collaborative study groups.",
-    arch: "React Native • Expo & Expo Router • TypeScript • Axios (Auth Interceptors) • React Context API • Node.js / Express.js • MongoDB + Mongoose • Cloudinary • ESLint • Prettier • Postman • EAS Build",
-    badge: "Mobile / Full-Stack / Group Project",
-  },
-  {
-    id: "sethum-portfolio",
-    emoji: "",
-    title: "Cyber Security & Data Analytics Portfolio",
-    subtitle: "Client Portfolio Website",
-    repo: "https://github.com/ThisulHerath/Sethum_s_Portfolio",
-    liveDemo: "https://sethum-s-portfolio.vercel.app/",
-    stack: ["React", "Vite", "Tailwind CSS", "Framer Motion", "Vercel"],
-    color: "#22c55e",
-    year: "2026",
-    highlights: [
-      "Animated matrix background with a cybersecurity-inspired visual style",
-      "Custom animated cursor and smooth section navigation",
-      "Responsive layout tuned for desktop, tablet, and mobile",
-      "Framer Motion transitions with a neon cyberpunk theme",
-    ],
-    desc: "A modern, interactive portfolio built for a friend to showcase Cyber Security, Data Analytics, and Team Leadership experience with polished motion design and a strong visual identity.",
-    arch: "React • Vite • Tailwind CSS • Framer Motion • React Icons / Lucide • React Scroll • Vercel",
-    badge: "Client Project",
+    desc: "A full-stack mobile collaboration platform included to show the software-engineering foundation behind my AI work.",
+    badge: "Software Engineering",
   },
 ];
 
 export default function Projects() {
   const [active, setActive] = useState(null);
+  const [filter, setFilter] = useState("all");
   const ref = useReveal();
+  const visibleProjects = filter === "all" ? projects : projects.filter((project) => project.category === filter);
+
+  const changeFilter = (nextFilter) => {
+    setFilter(nextFilter);
+    setActive(null);
+  };
 
   return (
     <section id="projects" className="projects" ref={ref}>
       <div className="orb" style={{ width: 600, height: 600, background: "rgba(104,211,145,0.04)", bottom: "-10%", left: "-10%", position: "absolute", filter: "blur(120px)" }} />
 
       <div className="projects-inner">
-        <div className="section-header reveal">
-          <span className="tag">// projects</span>
-          <h2 className="section-title">Things I've <span className="gradient-text">Built</span></h2>
+        <div className="projects-heading-row reveal">
+          <div className="section-header">
+            <span className="tag">// selected work</span>
+            <h2 className="section-title">AI First. <span className="gradient-text">Software Ready.</span></h2>
+            <p className="projects-intro">Projects chosen to show how I work across data, models, APIs, delivery pipelines, and user-facing products.</p>
+          </div>
+
+          <div className="project-filters" aria-label="Filter projects">
+            {filters.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                className={`filter-btn ${filter === item.id ? "active" : ""}`}
+                aria-pressed={filter === item.id}
+                onClick={() => changeFilter(item.id)}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="projects-grid">
-          {projects.map((p) => (
-            <div
-              key={p.id}
-              className={`project-card ${active === p.id ? "expanded" : ""}`}
-              style={{ "--card-color": p.color }}
-            >
-              <div className="card-top">
-                <div className="card-meta">
-                  <span className="card-emoji">{p.emoji}</span>
-                  <div>
-                    <span className="card-badge" style={{ color: p.color, borderColor: p.color + "40" }}>{p.badge}</span>
-                    <span className="card-year">{p.year}</span>
+          {visibleProjects.map((project, index) => {
+            const expanded = active === project.id;
+            const detailsId = `${project.id}-details`;
+
+            return (
+              <article
+                key={project.id}
+                className={`project-card ${project.featured ? "featured" : ""} ${expanded ? "expanded" : ""}`}
+                style={{ "--card-color": project.color }}
+              >
+                <div className="card-top">
+                  <div className="card-meta">
+                    <span className="card-index">{String(index + 1).padStart(2, "0")}</span>
+                    <div>
+                      <span className="card-badge" style={{ color: project.color, borderColor: `${project.color}40` }}>{project.badge}</span>
+                      <span className="card-year">{project.year}</span>
+                    </div>
+                  </div>
+                  <h3 className="card-title">{project.title}</h3>
+                  <p className="card-subtitle">{project.subtitle}</p>
+                </div>
+
+                <div className="card-stack">
+                  {project.stack.map((technology) => <span key={technology} className="stack-chip">{technology}</span>)}
+                </div>
+
+                <p className="card-desc">{project.desc}</p>
+
+                <div id={detailsId} className="card-expanded-content" hidden={!expanded}>
+                  <div className="highlights">
+                    <p className="hl-label">What this demonstrates</p>
+                    {project.highlights.map((highlight) => (
+                      <div key={highlight} className="hl-item">
+                        <span className="hl-dot" style={{ background: project.color }} />
+                        <span>{highlight}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-                <h3 className="card-title">{p.title}</h3>
-                <p className="card-subtitle">{p.subtitle}</p>
-              </div>
 
-              <div className="card-stack">
-                {p.stack.map((s) => (
-                  <span key={s} className="stack-chip">{s}</span>
-                ))}
-              </div>
+                <button
+                  type="button"
+                  className="card-toggle"
+                  style={{ color: project.color }}
+                  aria-expanded={expanded}
+                  aria-controls={detailsId}
+                  onClick={() => setActive(expanded ? null : project.id)}
+                >
+                  {expanded ? "Show less ↑" : "View evidence ↓"}
+                </button>
 
-              <p className="card-desc">{p.desc}</p>
-
-              <div className={`card-expanded-content ${active === p.id ? "show" : ""}`}>
-                <div className="highlights">
-                  <p className="hl-label">Key Highlights</p>
-                  {p.highlights.map((h, j) => (
-                    <div key={j} className="hl-item">
-                      <span className="hl-dot" style={{ background: p.color }} />
-                      <span>{h}</span>
-                    </div>
-                  ))}
+                <div className="card-links">
+                  <a className="card-repo-link" href={project.repo} target="_blank" rel="noreferrer" style={{ color: project.color }}>GitHub repository ↗</a>
+                  {project.dockerImage ? <a className="card-repo-link" href={project.dockerImage} target="_blank" rel="noreferrer" style={{ color: project.color }}>Docker image ↗</a> : null}
+                  {project.dataset ? <a className="card-repo-link" href={project.dataset} target="_blank" rel="noreferrer" style={{ color: project.color }}>Dataset ↗</a> : null}
                 </div>
-                <div className="arch-block">
-                  <p className="hl-label">Tech Stack</p>
-                  <p className="arch-text">{p.arch}</p>
-                </div>
-              </div>
 
-              <button
-                className="card-toggle"
-                style={{ color: p.color }}
-                onClick={() => setActive(active === p.id ? null : p.id)}
-              >
-                {active === p.id ? "Show less ↑" : "View details ↓"}
-              </button>
-
-              <div className="card-links">
-                {p.repo ? (
-                  <a
-                    className="card-repo-link"
-                    href={p.repo}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ color: p.color }}
-                  >
-                    View GitHub repo ↗
-                  </a>
-                ) : null}
-
-                {p.liveDemo ? (
-                  <a
-                    className="card-repo-link"
-                    href={p.liveDemo}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ color: p.color }}
-                  >
-                    Live demo ↗
-                  </a>
-                ) : null}
-
-                {p.dockerImage ? (
-                  <a
-                    className="card-repo-link"
-                    href={p.dockerImage}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ color: p.color }}
-                  >
-                    Docker image ↗
-                  </a>
-                ) : null}
-
-                {p.dataset ? (
-                  <a
-                    className="card-repo-link"
-                    href={p.dataset}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ color: p.color }}
-                  >
-                    Dataset ↗
-                  </a>
-                ) : null}
-              </div>
-
-              <div className="card-accent-line" style={{ background: p.color }} />
-            </div>
-          ))}
+                <div className="card-accent-line" style={{ background: project.color }} />
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
