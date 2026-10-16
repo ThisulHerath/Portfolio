@@ -31,6 +31,21 @@
   gap: 16px;
 }
 
+.availability-card {
+  position: relative;
+  overflow: hidden;
+  padding: 26px;
+  border: 1px solid rgba(104,211,145,0.22);
+  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(104,211,145,0.08), var(--surface) 58%);
+}
+.availability-card::after { content: ''; position: absolute; width: 150px; height: 150px; right: -65px; top: -70px; border-radius: 50%; background: rgba(104,211,145,0.12); filter: blur(45px); }
+.availability-head { display: flex; align-items: center; gap: 8px; color: var(--accent3); font: 9px var(--font-mono); letter-spacing: 0.1em; }
+.availability-card h3 { margin-top: 14px; font: 700 20px var(--font-head); }
+.availability-card p { margin-top: 10px; color: var(--muted); font-size: 13px; line-height: 1.65; }
+.availability-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+.availability-tags span { padding: 5px 8px; border: 1px solid rgba(104,211,145,0.18); border-radius: 6px; color: #9ae6b4; font: 9px var(--font-mono); }
+
 .info-card {
   display: flex;
   align-items: flex-start;
@@ -46,7 +61,20 @@
   transform: translateX(4px);
 }
 
-.info-icon { font-size: 20px; margin-top: 2px; }
+.info-icon {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  display: grid;
+  place-items: center;
+  margin-top: 1px;
+  border: 1px solid rgba(99,179,237,0.2);
+  border-radius: 9px;
+  background: rgba(99,179,237,0.06);
+  color: var(--accent);
+  font: 600 9px var(--font-mono);
+  letter-spacing: 0.04em;
+}
 
 .info-label {
   font-family: var(--font-mono);
@@ -103,6 +131,7 @@ a.info-value:hover { color: var(--accent); }
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 36px;
+  box-shadow: 0 28px 80px rgba(0,0,0,0.25);
 }
 
 .form-group {

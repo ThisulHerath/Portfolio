@@ -84,29 +84,35 @@ export default function Contact() {
 
         <div className="contact-grid">
           <div className="contact-info reveal-left">
+            <div className="availability-card">
+              <div className="availability-head"><span className="badge-dot" /> CURRENT SEARCH</div>
+              <h3>AI / ML Engineering Internship</h3>
+              <p>Especially interested in applied AI, NLP, intelligent systems, MLOps, and teams that care about shipping reliable software.</p>
+              <div className="availability-tags"><span>Internship</span><span>Sri Lanka</span><span>Remote / Hybrid</span></div>
+            </div>
             <div className="info-card">
-              <div className="info-icon">📧</div>
+              <div className="info-icon" aria-hidden="true">@</div>
               <div>
                 <p className="info-label">Email</p>
                 <a href="mailto:thisulh@gmail.com" className="info-value">thisulh@gmail.com</a>
               </div>
             </div>
             <div className="info-card">
-              <div className="info-icon">🎓</div>
+              <div className="info-icon" aria-hidden="true">EDU</div>
               <div>
                 <p className="info-label">University</p>
                 <p className="info-value">SLIIT — BSc IT (AI)</p>
               </div>
             </div>
             <div className="info-card">
-              <div className="info-icon">📍</div>
+              <div className="info-icon" aria-hidden="true">LOC</div>
               <div>
                 <p className="info-label">Location</p>
                 <p className="info-value">Sri Lanka</p>
               </div>
             </div>
             <div className="info-card">
-              <div className="info-icon">📄</div>
+              <div className="info-icon" aria-hidden="true">CV</div>
               <div>
                 <p className="info-label">Resume</p>
                 <a href="/resume.pdf" download="Thisul-Herath-CV.pdf" className="info-value">Download CV</a>

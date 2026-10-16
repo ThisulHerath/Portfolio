@@ -4,7 +4,7 @@ import "./Skills.css";
 const skillGroups = [
   {
     category: "Machine Learning",
-    icon: "🤖",
+    icon: "ML",
     color: "var(--accent)",
     focus: "Building reproducible pipelines from raw data through evaluation.",
     skills: ["Scikit-Learn", "Pandas", "NumPy", "Feature Engineering", "Model Evaluation"],
@@ -12,7 +12,7 @@ const skillGroups = [
   },
   {
     category: "NLP & Applied AI",
-    icon: "⚙️",
+    icon: "NLP",
     color: "var(--accent2)",
     focus: "Exploring intelligent systems that solve practical user problems.",
     skills: ["NLTK", "TF-IDF", "LinearSVC", "OpenCV", "LangGraph"],
@@ -20,7 +20,7 @@ const skillGroups = [
   },
   {
     category: "MLOps & AI Services",
-    icon: "🎨",
+    icon: "OPS",
     color: "var(--accent3)",
     focus: "Turning trained models into testable and deployable services.",
     skills: ["FastAPI", "MLflow", "Docker", "GitHub Actions", "Pytest"],
@@ -28,7 +28,7 @@ const skillGroups = [
   },
   {
     category: "Software Engineering",
-    icon: "🛠️",
+    icon: "SE",
     color: "#f6ad55",
     focus: "Building the APIs, interfaces, and data layers around AI products.",
     skills: ["Python", "TypeScript", "React", "Node.js", "ASP.NET Core", "Spring Boot"],
@@ -57,10 +57,11 @@ export default function Skills() {
 
         <div className="skills-grid">
           {skillGroups.map((group, gi) => (
-            <div key={gi} className={`skill-card reveal delay-${gi + 1}`}>
+            <div key={gi} className={`skill-card reveal delay-${gi + 1}`} style={{ "--skill-color": group.color }}>
               <div className="skill-card-header">
                 <span className="skill-icon">{group.icon}</span>
                 <h3 className="skill-category" style={{ color: group.color }}>{group.category}</h3>
+                <span className="skill-number">0{gi + 1}</span>
               </div>
               <p className="skill-focus">{group.focus}</p>
               <div className="skill-list" aria-label={`${group.category} tools`}>

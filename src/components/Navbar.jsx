@@ -4,6 +4,7 @@ import "./Navbar.css";
 const links = [
   { id: "hero", label: "Home" },
   { id: "about", label: "About" },
+  { id: "lab", label: "Lab" },
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
   { id: "contact", label: "Contact" },
@@ -12,9 +13,15 @@ const links = [
 export default function Navbar({ activeSection }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 50);
+    const handler = () => {
+      setScrolled(window.scrollY > 50);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(max > 0 ? (window.scrollY / max) * 100 : 0);
+    };
+    handler();
     window.addEventListener("scroll", handler);
     return () => window.removeEventListener("scroll", handler);
   }, []);
@@ -35,6 +42,7 @@ export default function Navbar({ activeSection }) {
 
   return (
     <nav className={`navbar ${scrolled ? "scrolled" : ""}`} aria-label="Primary navigation">
+      <div className="scroll-progress" style={{ width: `${progress}%` }} aria-hidden="true" />
       <div className="nav-inner">
         <button className="nav-logo" onClick={() => scrollTo("hero")} aria-label="Go to home section">
           <span className="logo-bracket">&lt;</span>
@@ -61,6 +69,14 @@ export default function Navbar({ activeSection }) {
           >
             Resume ↗
           </a>
+          <button
+            type="button"
+            className="command-trigger"
+            aria-label="Open quick navigation"
+            onClick={() => window.dispatchEvent(new Event("open-command-palette"))}
+          >
+            <span>Quick jump</span><kbd>Ctrl K</kbd>
+          </button>
         </div>
 
         <button

@@ -8,6 +8,16 @@
   transition: all 0.4s ease;
 }
 
+.scroll-progress {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
+  box-shadow: 0 0 12px var(--accent);
+  transition: width 0.08s linear;
+}
+
 .navbar.scrolled {
   padding: 12px 0;
   background: rgba(5, 8, 16, 0.85);
@@ -99,6 +109,24 @@
   box-shadow: 0 0 20px rgba(99,179,237,0.15);
 }
 
+.command-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 6px;
+  padding: 7px 9px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.025);
+  color: var(--muted);
+  font: 11px var(--font-body);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.command-trigger:hover { color: var(--text); border-color: rgba(99,179,237,0.3); }
+.command-trigger kbd { color: var(--accent); }
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -142,4 +170,5 @@
   .nav-links.open { display: flex; }
   .nav-link { width: 100%; text-align: center; padding: 12px; }
   .nav-cta { margin-left: 0; width: 100%; text-align: center; }
+  .command-trigger { width: 100%; justify-content: center; margin-left: 0; padding: 12px; }
 }

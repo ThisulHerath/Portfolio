@@ -11,6 +11,8 @@ const filters = [
 const projects = [
   {
     id: "smart-solar",
+    visual: "solar",
+    metric: "4 cooperating services",
     category: "ai",
     featured: true,
     title: "Smart Solar Installation & Grid Compliance Platform",
@@ -30,6 +32,8 @@ const projects = [
   },
   {
     id: "churn-service",
+    visual: "churn",
+    metric: "7,043 customer records",
     category: "ai",
     featured: true,
     title: "Churn Prediction Service",
@@ -51,6 +55,8 @@ const projects = [
   },
   {
     id: "retail",
+    visual: "retail",
+    metric: "Forecasting + operations",
     category: "ai",
     featured: true,
     title: "7 Super City: Retail Forecasting Platform",
@@ -70,6 +76,8 @@ const projects = [
   },
   {
     id: "nlp",
+    visual: "nlp",
+    metric: "5 evaluation metrics",
     category: "ai",
     title: "Toxic Comment Classification Pipeline",
     subtitle: "NLP preprocessing, tuning, and evaluation",
@@ -88,6 +96,8 @@ const projects = [
   },
   {
     id: "emotion-detector",
+    visual: "vision",
+    metric: "7 emotion signals",
     category: "ai",
     title: "Facial Emotion Detector",
     subtitle: "Computer-vision inference with a web interface",
@@ -106,6 +116,8 @@ const projects = [
   },
   {
     id: "univault",
+    visual: "mobile",
+    metric: "7 MongoDB models",
     category: "software",
     title: "UniVault: Academic Resource Platform",
     subtitle: "Cross-platform mobile software system",
@@ -123,6 +135,73 @@ const projects = [
     badge: "Software Engineering",
   },
 ];
+
+function ProjectVisual({ type, title }) {
+  if (type === "solar") {
+    return (
+      <div className="project-visual visual-solar" aria-label={`${title} system preview`}>
+        <div className="visual-topline"><span>AGENT FLOW</span><span className="visual-live">● ACTIVE</span></div>
+        <div className="solar-flow">
+          <span>Survey</span><i>→</i><span>Sizing</span><i>→</i><span>Grid</span><i>→</i><span>Safety</span><i>→</i><span>Plan</span>
+        </div>
+        <div className="solar-pulse" aria-hidden="true"><i /><i /><i /></div>
+      </div>
+    );
+  }
+
+  if (type === "churn") {
+    return (
+      <div className="project-visual visual-churn" aria-label={`${title} model preview`}>
+        <div className="visual-topline"><span>INFERENCE / CUSTOMER_7043</span><span className="visual-live">● READY</span></div>
+        <div className="churn-layout">
+          <div className="churn-ring"><span>0.78</span><small>CHURN RISK</small></div>
+          <div className="mini-bars"><i style={{ "--h": "34%" }} /><i style={{ "--h": "52%" }} /><i style={{ "--h": "46%" }} /><i style={{ "--h": "72%" }} /><i style={{ "--h": "88%" }} /><i style={{ "--h": "62%" }} /></div>
+        </div>
+      </div>
+    );
+  }
+
+  if (type === "retail") {
+    return (
+      <div className="project-visual visual-retail" aria-label={`${title} forecasting preview`}>
+        <div className="visual-topline"><span>7 SUPER CITY / FORECAST</span><span>+12.4%</span></div>
+        <svg viewBox="0 0 420 120" role="img" aria-label="Forecast trend visualization">
+          <defs><linearGradient id="forecastFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#68d391" stopOpacity=".3"/><stop offset="1" stopColor="#68d391" stopOpacity="0"/></linearGradient></defs>
+          <path className="chart-area" d="M0,100 C50,95 58,76 105,82 S170,40 210,55 S280,80 320,35 S380,22 420,12 L420,120 L0,120 Z" />
+          <path className="chart-line" d="M0,100 C50,95 58,76 105,82 S170,40 210,55 S280,80 320,35 S380,22 420,12" />
+        </svg>
+      </div>
+    );
+  }
+
+  if (type === "nlp") {
+    return (
+      <div className="project-visual visual-nlp" aria-label={`${title} classification preview`}>
+        <div className="visual-topline"><span>TEXT CLASSIFIER</span><span>LINEAR SVC</span></div>
+        <div className="nlp-message">“This comment needs moderation...”</div>
+        <div className="nlp-result"><span>TOXIC</span><i><b /></i><strong>92%</strong></div>
+        <div className="nlp-result secondary"><span>NEUTRAL</span><i><b /></i><strong>08%</strong></div>
+      </div>
+    );
+  }
+
+  if (type === "vision") {
+    return (
+      <div className="project-visual visual-vision" aria-label={`${title} computer vision preview`}>
+        <div className="visual-topline"><span>VISION / FRAME 024</span><span className="visual-live">● FACE FOUND</span></div>
+        <div className="face-map" aria-hidden="true"><i className="eye left"/><i className="eye right"/><i className="nose"/><i className="mouth"/><span className="corner c1"/><span className="corner c2"/><span className="corner c3"/><span className="corner c4"/></div>
+        <div className="emotion-readout"><span>HAPPY</span><strong>86.2%</strong></div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="project-visual visual-mobile" aria-label={`${title} mobile application preview`}>
+      <div className="visual-topline"><span>UNIVAULT / MOBILE</span><span>SYNCED</span></div>
+      <div className="mobile-shell"><span className="mobile-notch"/><div className="mobile-card"><i>PDF</i><span>Machine Learning Notes<small>Shared resources</small></span></div><div className="mobile-card muted"><i>AI</i><span>Study Group<small>12 members</small></span></div></div>
+    </div>
+  );
+}
 
 export default function Projects() {
   const [active, setActive] = useState(null);
@@ -173,6 +252,7 @@ export default function Projects() {
                 className={`project-card ${project.featured ? "featured" : ""} ${expanded ? "expanded" : ""}`}
                 style={{ "--card-color": project.color }}
               >
+                <ProjectVisual type={project.visual} title={project.title} />
                 <div className="card-top">
                   <div className="card-meta">
                     <span className="card-index">{String(index + 1).padStart(2, "0")}</span>
@@ -183,6 +263,7 @@ export default function Projects() {
                   </div>
                   <h3 className="card-title">{project.title}</h3>
                   <p className="card-subtitle">{project.subtitle}</p>
+                  <p className="card-metric"><span aria-hidden="true">↳</span> {project.metric}</p>
                 </div>
 
                 <div className="card-stack">

@@ -22,63 +22,7 @@ function generateObjects(count) {
 
 export default function FloatingParticles() {
   const canvasRef = useRef(null);
-  const [objects] = useState(() => generateObjects(30));
-  const mouseRef = useRef({ x: 0, y: 0 });
-  const rafRef = useRef(null);
-
-  useEffect(() => {
-    const supportsCustomCursor = window.matchMedia("(pointer: fine)").matches
-      && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!supportsCustomCursor) return undefined;
-
-    const cursor = document.createElement("div");
-    cursor.className = "cursor";
-    const ring = document.createElement("div");
-    ring.className = "cursor-ring";
-    document.body.appendChild(cursor);
-    document.body.appendChild(ring);
-    let ringX = 0, ringY = 0;
-
-    const moveCursor = (e) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY };
-      cursor.style.left = e.clientX - 5 + "px";
-      cursor.style.top = e.clientY - 5 + "px";
-    };
-
-    const animateRing = () => {
-      ringX += (mouseRef.current.x - ringX - 18) * 0.12;
-      ringY += (mouseRef.current.y - ringY - 18) * 0.12;
-      ring.style.left = ringX + "px";
-      ring.style.top = ringY + "px";
-      rafRef.current = requestAnimationFrame(animateRing);
-    };
-
-    const onEnter = () => {
-      cursor.style.transform = "scale(2)";
-      ring.style.width = "60px";
-      ring.style.height = "60px";
-    };
-    const onLeave = () => {
-      cursor.style.transform = "scale(1)";
-      ring.style.width = "36px";
-      ring.style.height = "36px";
-    };
-
-    document.addEventListener("mousemove", moveCursor);
-    document.querySelectorAll("a,button,[data-hover]").forEach(el => {
-      el.addEventListener("mouseenter", onEnter);
-      el.addEventListener("mouseleave", onLeave);
-    });
-
-    animateRing();
-
-    return () => {
-      document.removeEventListener("mousemove", moveCursor);
-      cursor.remove();
-      ring.remove();
-      cancelAnimationFrame(rafRef.current);
-    };
-  }, []);
+  const [objects] = useState(() => generateObjects(18));
 
   // Canvas grid
   useEffect(() => {

@@ -21,11 +21,15 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--bg);
+  background:
+    radial-gradient(circle at 50% -20%, rgba(99,179,237,0.07), transparent 34%),
+    var(--bg);
   color: var(--text);
   font-family: var(--font-body);
   overflow-x: hidden;
 }
+
+::selection { background: rgba(99,179,237,0.28); color: #fff; }
 
 button,
 a,
@@ -38,28 +42,12 @@ textarea {
   outline: 2px solid var(--accent);
 }
 
-/* Custom cursor */
-.cursor {
+.pointer-aura {
   position: fixed;
-  width: 10px;
-  height: 10px;
-  background: var(--accent);
-  border-radius: 50%;
+  inset: 0;
   pointer-events: none;
-  z-index: 9999;
-  mix-blend-mode: screen;
-  transition: transform 0.1s ease;
-}
-
-.cursor-ring {
-  position: fixed;
-  width: 36px;
-  height: 36px;
-  border: 1.5px solid rgba(99, 179, 237, 0.5);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998;
-  transition: transform 0.25s ease, width 0.2s ease, height 0.2s ease;
+  z-index: 0;
+  background: radial-gradient(420px circle at var(--pointer-x, 50%) var(--pointer-y, 20%), rgba(99,179,237,0.055), transparent 70%);
 }
 
 /* Scrollbar */
@@ -111,6 +99,17 @@ textarea {
 section {
   position: relative;
   z-index: 1;
+}
+
+section:not(:first-of-type)::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: min(1200px, calc(100% - 64px));
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgba(99,179,237,0.11), transparent);
 }
 
 /* Glow orbs */
@@ -180,10 +179,6 @@ section {
   background-clip: text;
 }
 
-@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  body { cursor: none; }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 
@@ -203,13 +198,7 @@ section {
 }
 
 @media (max-width: 768px) {
-  body {
-    cursor: auto;
-  }
-  .cursor,
-  .cursor-ring {
-    display: none;
-  }
+  .pointer-aura { display: none; }
 
   .section-title {
     font-size: clamp(28px, 9vw, 38px);

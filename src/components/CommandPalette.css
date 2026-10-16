@@ -1,0 +1,105 @@
+.command-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: start center;
+  padding: min(18vh, 140px) 20px 20px;
+  background: rgba(2, 5, 12, 0.72);
+  backdrop-filter: blur(12px);
+  animation: command-in 0.18s ease both;
+}
+
+.command-dialog {
+  width: min(620px, 100%);
+  overflow: hidden;
+  border: 1px solid rgba(124, 216, 255, 0.22);
+  border-radius: 18px;
+  background: rgba(8, 13, 26, 0.98);
+  box-shadow: 0 30px 100px rgba(0,0,0,0.65), 0 0 80px rgba(99,179,237,0.08);
+}
+
+.command-search {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+
+.command-search input {
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text);
+  font: 500 16px/1.4 var(--font-body);
+}
+
+.command-search input::placeholder { color: #607394; }
+
+kbd {
+  padding: 3px 7px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: rgba(255,255,255,0.04);
+  color: var(--muted);
+  font: 10px var(--font-mono);
+}
+
+.command-list { padding: 8px; }
+
+.command-list button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.command-list button.selected {
+  background: linear-gradient(90deg, rgba(99,179,237,0.12), rgba(159,122,234,0.06));
+}
+
+.command-icon {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--accent);
+  font: 11px var(--font-mono);
+}
+
+.command-list strong,
+.command-list small { display: block; }
+.command-list strong { font-size: 14px; font-weight: 500; }
+.command-list small { margin-top: 2px; color: var(--muted); font-size: 11px; }
+.command-arrow { color: var(--muted); opacity: 0; }
+.command-list button.selected .command-arrow { opacity: 1; }
+.command-empty { padding: 28px; color: var(--muted); text-align: center; }
+
+.command-footer {
+  display: flex;
+  gap: 18px;
+  padding: 10px 20px;
+  border-top: 1px solid var(--border);
+  color: #607394;
+  font: 10px var(--font-mono);
+}
+
+@keyframes command-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
