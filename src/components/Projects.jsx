@@ -214,6 +214,13 @@ export default function Projects() {
     setActive(null);
   };
 
+  const moveSpotlight = (event) => {
+    const card = event.currentTarget;
+    const bounds = card.getBoundingClientRect();
+    card.style.setProperty("--card-x", `${event.clientX - bounds.left}px`);
+    card.style.setProperty("--card-y", `${event.clientY - bounds.top}px`);
+  };
+
   return (
     <section id="projects" className="projects" ref={ref}>
       <div className="orb" style={{ width: 600, height: 600, background: "rgba(104,211,145,0.04)", bottom: "-10%", left: "-10%", position: "absolute", filter: "blur(120px)" }} />
@@ -251,6 +258,7 @@ export default function Projects() {
                 key={project.id}
                 className={`project-card ${project.featured ? "featured" : ""} ${expanded ? "expanded" : ""}`}
                 style={{ "--card-color": project.color }}
+                onPointerMove={moveSpotlight}
               >
                 <ProjectVisual type={project.visual} title={project.title} />
                 <div className="card-top">

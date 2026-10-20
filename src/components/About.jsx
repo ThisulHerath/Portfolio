@@ -2,10 +2,10 @@ import { useReveal } from "../hooks/useReveal";
 import "./About.css";
 
 const timeline = [
-  { year: "2024", title: "Started BSc IT (AI)", org: "SLIIT", desc: "Began specializing in artificial intelligence, machine learning, and software engineering." },
-  { year: "2025", title: "Built an NLP Classification Pipeline", org: "Machine Learning", desc: "Applied text preprocessing, TF-IDF, imbalance handling, model tuning, and evaluation to toxic-comment classification." },
-  { year: "2026", title: "Moved Models Toward Production", org: "MLOps", desc: "Built a churn prediction service with FastAPI, MLflow, Docker, automated tests, and CI/CD publishing." },
-  { year: "Now", title: "Seeking an AI / ML Internship", org: "Open to Opportunities", desc: "Looking to contribute to applied AI, ML engineering, MLOps, or software teams building intelligent products." },
+  { year: "2024", title: "Started BSc IT (AI)", org: "SLIIT", desc: "Built the foundation in intelligent systems and software engineering." },
+  { year: "2025", title: "Moved into Applied ML", org: "NLP", desc: "Built and evaluated a complete toxic-comment classification workflow." },
+  { year: "2026", title: "Started Shipping Models", org: "MLOps", desc: "Connected experiments to APIs, containers, tests, and CI delivery." },
+  { year: "Now", title: "Ready to Join a Team", org: "Internship", desc: "Seeking an AI / ML role where useful systems matter more than demos." },
 ];
 
 export default function About() {
@@ -23,6 +23,7 @@ export default function About() {
 
         <div className="about-grid">
           <div className="about-text reveal-left">
+            <p className="about-lede">I sit at the intersection of <span>models, systems, and product thinking.</span></p>
             <p>
               I'm an <strong>Artificial Intelligence undergraduate at SLIIT</strong> interested in
               the full journey from data and experimentation to dependable software people can use.
@@ -38,6 +39,11 @@ export default function About() {
               <strong>AI engineering, machine learning, MLOps, or software engineering</strong>
               while learning from an experienced product team.
             </p>
+
+            <div className="working-principle">
+              <span>// working principle</span>
+              <strong>A model becomes valuable when it is understandable, testable, and usable.</strong>
+            </div>
 
             <div className="about-links reveal delay-2">
               <a href="https://github.com/ThisulHerath" target="_blank" rel="noopener noreferrer" className="about-link">
@@ -55,24 +61,31 @@ export default function About() {
             </div>
           </div>
 
-          <div className="timeline reveal-right delay-1">
-            <div className="timeline-label">
-              <span className="tag">// journey</span>
-            </div>
-            {timeline.map((item, i) => (
-              <div key={i} className={`timeline-item reveal delay-${i + 1}`}>
-                <div className="tl-left">
-                  <span className="tl-year">{item.year}</span>
-                  <div className="tl-line" />
-                </div>
-                <div className="tl-right">
-                  <div className="tl-dot" />
-                  <h4 className="tl-title">{item.title}</h4>
-                  <span className="tl-org">{item.org}</span>
-                  <p className="tl-desc">{item.desc}</p>
-                </div>
+          <div className="journey-board reveal-right delay-1">
+            <div className="journey-board-head">
+              <div>
+                <span>PROFILE / TRAJECTORY</span>
+                <strong>Learning in public. Building with intent.</strong>
               </div>
-            ))}
+              <span className="journey-live"><i /> LIVE</span>
+            </div>
+            <div className="journey-grid">
+              {timeline.map((item, i) => (
+                <article key={item.year} className={`journey-item ${i === timeline.length - 1 ? "current" : ""}`}>
+                  <div className="journey-meta">
+                    <span>{String(i + 1).padStart(2, "0")}</span>
+                    <span>{item.year}</span>
+                  </div>
+                  <div className="journey-node" aria-hidden="true"><i /></div>
+                  <span className="journey-org">{item.org}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.desc}</p>
+                </article>
+              ))}
+            </div>
+            <div className="journey-footer">
+              <span>MODEL</span><i /><span>API</span><i /><span>PRODUCT</span>
+            </div>
           </div>
         </div>
       </div>
