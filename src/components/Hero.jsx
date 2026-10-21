@@ -78,7 +78,7 @@ export default function Hero() {
               </button>
             ))}
 
-            <div className="system-readout" aria-live="polite">
+            <div key={signal.id} className="system-readout" aria-live="polite">
               <span>{signal.label} SIGNAL</span>
               <strong>{signal.value}</strong>
               <small>{signal.note}</small>

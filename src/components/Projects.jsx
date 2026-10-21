@@ -8,6 +8,8 @@ const filters = [
   { id: "software", label: "Software engineering" },
 ];
 
+const spotlightFrames = new WeakMap();
+
 const projects = [
   {
     id: "smart-solar",
@@ -215,10 +217,19 @@ export default function Projects() {
   };
 
   const moveSpotlight = (event) => {
+    if (event.pointerType && event.pointerType !== "mouse") return;
     const card = event.currentTarget;
-    const bounds = card.getBoundingClientRect();
-    card.style.setProperty("--card-x", `${event.clientX - bounds.left}px`);
-    card.style.setProperty("--card-y", `${event.clientY - bounds.top}px`);
+    const pointerX = event.clientX;
+    const pointerY = event.clientY;
+    if (spotlightFrames.has(card)) return;
+
+    const frame = requestAnimationFrame(() => {
+      const bounds = card.getBoundingClientRect();
+      card.style.setProperty("--card-x", `${pointerX - bounds.left}px`);
+      card.style.setProperty("--card-y", `${pointerY - bounds.top}px`);
+      spotlightFrames.delete(card);
+    });
+    spotlightFrames.set(card, frame);
   };
 
   return (
@@ -248,7 +259,7 @@ export default function Projects() {
           </div>
         </div>
 
-        <div className="projects-grid">
+        <div className="projects-grid" key={filter}>
           {visibleProjects.map((project, index) => {
             const expanded = active === project.id;
             const detailsId = `${project.id}-details`;
@@ -280,15 +291,17 @@ export default function Projects() {
 
                 <p className="card-desc">{project.desc}</p>
 
-                <div id={detailsId} className="card-expanded-content" hidden={!expanded}>
-                  <div className="highlights">
-                    <p className="hl-label">What this demonstrates</p>
-                    {project.highlights.map((highlight) => (
-                      <div key={highlight} className="hl-item">
-                        <span className="hl-dot" style={{ background: project.color }} />
-                        <span>{highlight}</span>
-                      </div>
-                    ))}
+                <div id={detailsId} className="card-expanded-content" aria-hidden={!expanded}>
+                  <div className="card-expanded-inner">
+                    <div className="highlights">
+                      <p className="hl-label">What this demonstrates</p>
+                      {project.highlights.map((highlight) => (
+                        <div key={highlight} className="hl-item">
+                          <span className="hl-dot" style={{ background: project.color }} />
+                          <span>{highlight}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
 

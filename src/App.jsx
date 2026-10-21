@@ -18,7 +18,7 @@ export default function App() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
+            setActiveSection((current) => current === entry.target.id ? current : entry.target.id);
           }
         });
       },
@@ -30,13 +30,28 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    let pointerFrame = 0;
+    let pointerX = 0;
+    let pointerY = 0;
+
     const updatePointer = (event) => {
-      document.documentElement.style.setProperty("--pointer-x", `${event.clientX}px`);
-      document.documentElement.style.setProperty("--pointer-y", `${event.clientY}px`);
+      if (event.pointerType && event.pointerType !== "mouse") return;
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+      if (pointerFrame) return;
+
+      pointerFrame = requestAnimationFrame(() => {
+        document.documentElement.style.setProperty("--pointer-x", `${pointerX}px`);
+        document.documentElement.style.setProperty("--pointer-y", `${pointerY}px`);
+        pointerFrame = 0;
+      });
     };
 
     window.addEventListener("pointermove", updatePointer, { passive: true });
-    return () => window.removeEventListener("pointermove", updatePointer);
+    return () => {
+      window.removeEventListener("pointermove", updatePointer);
+      if (pointerFrame) cancelAnimationFrame(pointerFrame);
+    };
   }, []);
 
   return (

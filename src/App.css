@@ -18,7 +18,10 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 78px;
+}
 
 body {
   background:
@@ -36,7 +39,11 @@ a,
 input,
 textarea {
   outline-offset: 4px;
+  -webkit-tap-highlight-color: transparent;
 }
+
+button:active,
+a:active { transition-duration: 80ms !important; }
 
 :focus-visible {
   outline: 2px solid var(--accent);
@@ -44,10 +51,16 @@ textarea {
 
 .pointer-aura {
   position: fixed;
-  inset: 0;
+  left: 0;
+  top: 0;
+  width: 520px;
+  height: 520px;
   pointer-events: none;
   z-index: 0;
-  background: radial-gradient(420px circle at var(--pointer-x, 50%) var(--pointer-y, 20%), rgba(99,179,237,0.055), transparent 70%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99,179,237,0.065), transparent 70%);
+  transform: translate3d(calc(var(--pointer-x, 50vw) - 260px), calc(var(--pointer-y, 20vh) - 260px), 0);
+  will-change: transform;
 }
 
 /* Scrollbar */
@@ -58,38 +71,44 @@ textarea {
 /* Reveal animations */
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(24px);
+  transition: opacity 0.55s cubic-bezier(.22,1,.36,1), transform 0.55s cubic-bezier(.22,1,.36,1);
+  will-change: opacity, transform;
 }
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+  will-change: auto;
 }
 .reveal-left {
   opacity: 0;
-  transform: translateX(-50px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateX(-28px);
+  transition: opacity 0.58s cubic-bezier(.22,1,.36,1), transform 0.58s cubic-bezier(.22,1,.36,1);
+  will-change: opacity, transform;
 }
 .reveal-left.visible {
   opacity: 1;
   transform: translateX(0);
+  will-change: auto;
 }
 .reveal-right {
   opacity: 0;
-  transform: translateX(50px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateX(28px);
+  transition: opacity 0.58s cubic-bezier(.22,1,.36,1), transform 0.58s cubic-bezier(.22,1,.36,1);
+  will-change: opacity, transform;
 }
 .reveal-right.visible {
   opacity: 1;
   transform: translateX(0);
+  will-change: auto;
 }
 
 /* Delay helpers */
-.delay-1 { transition-delay: 0.1s; }
-.delay-2 { transition-delay: 0.2s; }
-.delay-3 { transition-delay: 0.3s; }
-.delay-4 { transition-delay: 0.4s; }
-.delay-5 { transition-delay: 0.5s; }
+.delay-1 { transition-delay: 0.05s; }
+.delay-2 { transition-delay: 0.1s; }
+.delay-3 { transition-delay: 0.15s; }
+.delay-4 { transition-delay: 0.2s; }
+.delay-5 { transition-delay: 0.25s; }
 
 .app {
   position: relative;
@@ -99,6 +118,7 @@ textarea {
 section {
   position: relative;
   z-index: 1;
+  scroll-margin-top: 76px;
 }
 
 section:not(:first-of-type)::before {
@@ -199,6 +219,10 @@ section:not(:first-of-type)::before {
 
 @media (max-width: 768px) {
   .pointer-aura { display: none; }
+
+  .reveal,
+  .reveal-left,
+  .reveal-right { transition-delay: 0s; }
 
   .section-title {
     font-size: clamp(28px, 9vw, 38px);

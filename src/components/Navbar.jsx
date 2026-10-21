@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./Navbar.css";
 
 const links = [
@@ -13,17 +13,30 @@ const links = [
 export default function Navbar({ activeSection }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const progressRef = useRef(null);
 
   useEffect(() => {
+    let frame = 0;
+
     const handler = () => {
-      setScrolled(window.scrollY > 50);
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      setProgress(max > 0 ? (window.scrollY / max) * 100 : 0);
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        const isScrolled = window.scrollY > 50;
+        setScrolled((current) => current === isScrolled ? current : isScrolled);
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const value = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+        progressRef.current?.style.setProperty("--scroll-progress", value);
+        frame = 0;
+      });
     };
     handler();
-    window.addEventListener("scroll", handler);
-    return () => window.removeEventListener("scroll", handler);
+    window.addEventListener("scroll", handler, { passive: true });
+    window.addEventListener("resize", handler, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handler);
+      window.removeEventListener("resize", handler);
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, []);
 
   useEffect(() => {
@@ -42,7 +55,7 @@ export default function Navbar({ activeSection }) {
 
   return (
     <nav className={`navbar ${scrolled ? "scrolled" : ""}`} aria-label="Primary navigation">
-      <div className="scroll-progress" style={{ width: `${progress}%` }} aria-hidden="true" />
+      <div ref={progressRef} className="scroll-progress" aria-hidden="true" />
       <div className="nav-inner">
         <button className="nav-logo" onClick={() => scrollTo("hero")} aria-label="Go to home section">
           <span className="logo-bracket">&lt;</span>

@@ -29,6 +29,11 @@
   text-shadow: 0 0 20px currentColor;
 }
 
+@media (max-width: 768px) {
+  .flying-obj:nth-of-type(n + 10) { display: none; }
+  .noise-overlay { opacity: .24; }
+}
+
 .flying-obj.alt {
   animation: floatDrift var(--dur, 10s) ease-in-out infinite;
 }

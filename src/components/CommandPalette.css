@@ -17,6 +17,7 @@
   border-radius: 18px;
   background: rgba(8, 13, 26, 0.98);
   box-shadow: 0 30px 100px rgba(0,0,0,0.65), 0 0 80px rgba(99,179,237,0.08);
+  animation: command-dialog-in .26s cubic-bezier(.22,1,.36,1) both;
 }
 
 .command-search {
@@ -65,10 +66,12 @@ kbd {
   color: var(--text);
   text-align: left;
   cursor: pointer;
+  transition: background .16s ease, transform .2s cubic-bezier(.22,1,.36,1);
 }
 
 .command-list button.selected {
   background: linear-gradient(90deg, rgba(99,179,237,0.12), rgba(159,122,234,0.06));
+  transform: translateX(3px);
 }
 
 .command-icon {
@@ -102,4 +105,9 @@ kbd {
 @keyframes command-in {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+@keyframes command-dialog-in {
+  from { opacity: 0; transform: translateY(-10px) scale(.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
