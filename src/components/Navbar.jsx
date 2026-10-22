@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { smoothScrollToSection } from "../utils/smoothScroll";
 import "./Navbar.css";
 
 const links = [
@@ -49,7 +50,7 @@ export default function Navbar({ activeSection }) {
   }, []);
 
   const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    smoothScrollToSection(id);
     setMenuOpen(false);
   };
 

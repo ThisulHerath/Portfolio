@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { smoothScrollToSection } from "../utils/smoothScroll";
 import "./Hero.css";
 
 const signals = [
@@ -67,7 +68,7 @@ export default function Hero() {
           </p>
 
           <div className="hero-actions">
-            <button className="btn-primary" onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}>
+            <button className="btn-primary" onClick={() => smoothScrollToSection("projects")}>
               Explore selected work <span aria-hidden="true">↘</span>
             </button>
             <a className="btn-outline" href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume <span aria-hidden="true">↗</span></a>
@@ -129,7 +130,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <button className="scroll-indicator" onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}>
+      <button className="scroll-indicator" onClick={() => smoothScrollToSection("about")}>
         <span>SCROLL TO EXPLORE</span><i aria-hidden="true" />
       </button>
     </section>

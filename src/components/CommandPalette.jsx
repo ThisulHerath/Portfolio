@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { smoothScrollToSection } from "../utils/smoothScroll";
 import "./CommandPalette.css";
 
 const commands = [
@@ -50,7 +51,7 @@ export default function CommandPalette() {
   const run = (command) => {
     if (!command) return;
     if (command.type === "section") {
-      document.getElementById(command.target)?.scrollIntoView({ behavior: "smooth" });
+      smoothScrollToSection(command.target);
     } else {
       window.open(command.target, "_blank", "noopener,noreferrer");
     }

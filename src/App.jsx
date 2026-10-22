@@ -10,6 +10,7 @@ import CommandPalette from "./components/CommandPalette";
 import FloatingParticles from "./components/FloatingParticles";
 import IntroSequence from "./components/IntroSequence";
 import KineticBand from "./components/KineticBand";
+import InteractionLayer from "./components/InteractionLayer";
 import "./App.css";
 
 export default function App() {
@@ -63,6 +64,7 @@ export default function App() {
       <Navbar activeSection={activeSection} />
       <CommandPalette />
       <div className="pointer-aura" aria-hidden="true" />
+      <InteractionLayer />
       <Hero />
       <KineticBand />
       <About />

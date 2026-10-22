@@ -23,6 +23,8 @@
   inset: 0;
   overflow: hidden;
   opacity: .9;
+  translate: 0 var(--page-parallax, 0px);
+  transition: translate .16s linear;
 }
 
 .aurora {
@@ -63,6 +65,7 @@
   inset: 0;
   overflow: hidden;
   opacity: .5;
+  translate: 0 var(--signal-parallax, 0px);
 }
 
 .signal-lanes span {
