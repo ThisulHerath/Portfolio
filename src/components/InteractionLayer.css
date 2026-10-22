@@ -6,41 +6,6 @@
   pointer-events: none;
 }
 
-.cursor-orbit {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 34px;
-  height: 34px;
-  border: 1px solid rgba(99,179,237,.42);
-  border-radius: 50%;
-  opacity: .72;
-  transform: translate3d(calc(var(--cursor-x, -100px) - 17px), calc(var(--cursor-y, -100px) - 17px), 0);
-  transition: width .24s cubic-bezier(.22,1,.36,1), height .24s cubic-bezier(.22,1,.36,1), border-color .24s ease, background .24s ease, opacity .2s ease;
-  will-change: transform, width, height;
-}
-
-.cursor-orbit i {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: var(--accent3);
-  box-shadow: 0 0 10px var(--accent3);
-  transform: translate(-50%,-50%);
-}
-
-.cursor-orbit.is-interactive {
-  width: 52px;
-  height: 52px;
-  border-color: rgba(159,122,234,.68);
-  background: rgba(99,179,237,.055);
-  opacity: 1;
-  transform: translate3d(calc(var(--cursor-x, -100px) - 26px), calc(var(--cursor-y, -100px) - 26px), 0);
-}
-
 .click-ripple {
   position: fixed;
   width: 18px;
@@ -122,13 +87,11 @@ section.section-in-view::after { animation-play-state: running; }
 }
 
 @media (max-width: 900px), (pointer: coarse) {
-  .cursor-orbit,
   .scroll-hud,
   .interface-stamp { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cursor-orbit,
   .scroll-hud,
   .interface-stamp,
   .click-effects { display: none; }
