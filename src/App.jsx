@@ -8,6 +8,8 @@ import Contact from "./components/Contact";
 import Navbar from "./components/Navbar";
 import CommandPalette from "./components/CommandPalette";
 import FloatingParticles from "./components/FloatingParticles";
+import IntroSequence from "./components/IntroSequence";
+import KineticBand from "./components/KineticBand";
 import "./App.css";
 
 export default function App() {
@@ -56,11 +58,13 @@ export default function App() {
 
   return (
     <div className="app">
+      <IntroSequence />
       <FloatingParticles />
       <Navbar activeSection={activeSection} />
       <CommandPalette />
       <div className="pointer-aura" aria-hidden="true" />
       <Hero />
+      <KineticBand />
       <About />
       <WorkflowLab />
       <Skills />

@@ -208,12 +208,19 @@ function ProjectVisual({ type, title }) {
 export default function Projects() {
   const [active, setActive] = useState(null);
   const [filter, setFilter] = useState("all");
+  const [reelIndex, setReelIndex] = useState(0);
   const ref = useReveal();
   const visibleProjects = filter === "all" ? projects : projects.filter((project) => project.category === filter);
+  const reelProjects = visibleProjects.slice(0, 5);
 
   const changeFilter = (nextFilter) => {
     setFilter(nextFilter);
     setActive(null);
+    setReelIndex(0);
+  };
+
+  const moveReel = (direction) => {
+    setReelIndex((current) => (current + direction + reelProjects.length) % reelProjects.length);
   };
 
   const moveSpotlight = (event) => {
@@ -257,6 +264,67 @@ export default function Projects() {
               </button>
             ))}
           </div>
+        </div>
+
+        <div className="project-reel reveal" aria-label="Interactive featured project reel">
+          <div className="reel-topline">
+            <span>FEATURED SYSTEMS / {String(reelProjects.length).padStart(2, "0")}</span>
+            <div className="reel-controls">
+              <button type="button" onClick={() => moveReel(-1)} aria-label="Previous project">←</button>
+              <span>{String(reelIndex + 1).padStart(2, "0")} / {String(reelProjects.length).padStart(2, "0")}</span>
+              <button type="button" onClick={() => moveReel(1)} aria-label="Next project">→</button>
+            </div>
+          </div>
+
+          <div className="reel-stage">
+            <p className="reel-watermark" aria-hidden="true">SELECTED<br />SYSTEMS</p>
+            {reelProjects.map((project, index) => {
+              let offset = index - reelIndex;
+              if (offset > reelProjects.length / 2) offset -= reelProjects.length;
+              if (offset < -reelProjects.length / 2) offset += reelProjects.length;
+              const isActive = offset === 0;
+
+              return (
+                <button
+                  key={project.id}
+                  type="button"
+                  className={`reel-card ${isActive ? "active" : ""}`}
+                  style={{
+                    "--reel-offset": offset,
+                    "--reel-abs": Math.abs(offset),
+                    "--reel-color": project.color,
+                  }}
+                  onClick={() => setReelIndex(index)}
+                  aria-label={`Show ${project.title}`}
+                  aria-current={isActive ? "true" : undefined}
+                >
+                  <span className="reel-card-frame">
+                    <ProjectVisual type={project.visual} title={project.title} />
+                  </span>
+                  <span className="reel-card-copy">
+                    <span>{String(index + 1).padStart(2, "0")} / {project.badge}</span>
+                    <strong>{project.title}</strong>
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="reel-footer">
+            <div>
+              <span>{reelProjects[reelIndex]?.subtitle}</span>
+              <strong>{reelProjects[reelIndex]?.metric}</strong>
+            </div>
+            <a href={reelProjects[reelIndex]?.repo} target="_blank" rel="noreferrer">
+              Open case study <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div className="project-files-heading reveal">
+          <span>PROJECT FILES</span>
+          <i />
+          <span>{String(visibleProjects.length).padStart(2, "0")} ENTRIES</span>
         </div>
 
         <div className="projects-grid" key={filter}>
