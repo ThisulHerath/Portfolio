@@ -1,16 +1,18 @@
 .projects {
-  --project-paper: #efede7;
-  --project-ink: #111217;
-  --project-muted: #68686b;
+  --project-paper: #070b16;
+  --project-ink: #e8f0fe;
+  --project-muted: #93a6c8;
   padding: 150px 32px 130px;
   position: relative;
   overflow: hidden;
   border-radius: clamp(36px, 6vw, 92px) clamp(36px, 6vw, 92px) 0 0;
   background:
-    linear-gradient(rgba(17,18,23,.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(17,18,23,.035) 1px, transparent 1px),
+    linear-gradient(rgba(99,179,237,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99,179,237,.035) 1px, transparent 1px),
+    radial-gradient(circle at 52% 18%, rgba(99,179,237,.09), transparent 30%),
+    radial-gradient(circle at 88% 58%, rgba(159,122,234,.08), transparent 25%),
     var(--project-paper);
-  background-size: 42px 42px, 42px 42px, auto;
+  background-size: 42px 42px, 42px 42px, auto, auto, auto;
   color: var(--project-ink);
 }
 
@@ -19,8 +21,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(circle at 50% 22%, rgba(255,255,255,.9), transparent 36%);
-  mix-blend-mode: soft-light;
+  background: linear-gradient(180deg, rgba(99,179,237,.035), transparent 18%, transparent 82%, rgba(159,122,234,.04));
 }
 
 .projects-inner {
@@ -49,17 +50,21 @@
 }
 
 .projects .tag {
-  border-color: rgba(17,18,23,.18);
-  background: rgba(17,18,23,.045);
-  color: var(--project-ink);
+  border-color: rgba(99,179,237,.2);
+  background: rgba(99,179,237,.08);
+  color: var(--accent);
 }
 
 .projects .section-title { color: var(--project-ink); }
 .projects .gradient-text {
-  background: none;
+  background: linear-gradient(105deg, var(--accent), var(--accent2), var(--accent3));
+  background-size: 200% 200%;
   color: transparent;
-  -webkit-text-stroke: 1.5px var(--project-ink);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-stroke: 0;
   -webkit-text-fill-color: transparent;
+  animation: gradient-shift 5s ease infinite;
 }
 
 .project-filters {
@@ -71,9 +76,9 @@
 
 .filter-btn {
   padding: 8px 12px;
-  border: 1px solid rgba(17,18,23,.16);
+  border: 1px solid var(--border);
   border-radius: 999px;
-  background: rgba(255,255,255,.35);
+  background: rgba(13,20,38,.78);
   color: var(--project-muted);
   font-family: var(--font-mono);
   font-size: 11px;
@@ -83,9 +88,10 @@
 
 .filter-btn:hover,
 .filter-btn.active {
-  color: #f6f3ed;
-  border-color: var(--project-ink);
-  background: var(--project-ink);
+  color: var(--text);
+  border-color: rgba(99,179,237,.45);
+  background: rgba(99,179,237,.12);
+  box-shadow: 0 0 24px rgba(99,179,237,.08);
 }
 
 .project-reel {
@@ -93,8 +99,21 @@
   overflow: hidden;
   min-height: 690px;
   margin: 0 calc(50% - 50vw) 88px;
-  border-block: 1px solid rgba(17,18,23,.13);
-  background: rgba(247,245,240,.52);
+  border-block: 1px solid rgba(99,179,237,.12);
+  background: linear-gradient(180deg, rgba(13,20,38,.42), rgba(5,8,16,.62));
+}
+
+.project-reel::before {
+  content: '';
+  position: absolute;
+  left: 18%;
+  top: 22%;
+  width: 520px;
+  height: 280px;
+  border-radius: 50%;
+  background: rgba(99,179,237,.08);
+  filter: blur(90px);
+  animation: reel-aurora 8s ease-in-out infinite alternate;
 }
 
 .reel-topline,
@@ -112,12 +131,12 @@
   letter-spacing: .1em;
 }
 
-.reel-topline { min-height: 58px; border-bottom: 1px solid rgba(17,18,23,.11); }
+.reel-topline { min-height: 58px; border-bottom: 1px solid rgba(99,179,237,.11); }
 .reel-controls { display: flex; align-items: center; gap: 13px; }
 .reel-controls button {
   width: 34px;
   height: 34px;
-  border: 1px solid rgba(17,18,23,.18);
+  border: 1px solid rgba(99,179,237,.22);
   border-radius: 50%;
   background: transparent;
   color: var(--project-ink);
@@ -125,6 +144,8 @@
   transition: color .25s ease, background .25s ease, transform .25s ease;
 }
 .reel-controls button:hover { color: #fff; background: var(--project-ink); transform: scale(1.06); }
+.reel-controls button:hover { background: linear-gradient(135deg, var(--accent), var(--accent2)); box-shadow: 0 0 24px rgba(99,179,237,.24); }
+.reel-controls button:active { transform: scale(.94); }
 
 .reel-stage {
   position: relative;
@@ -141,7 +162,7 @@
   width: min(1000px, 90vw);
   height: 54px;
   border-radius: 50%;
-  background: rgba(17,18,23,.12);
+  background: rgba(99,179,237,.12);
   filter: blur(26px);
   transform: translateX(-50%);
 }
@@ -152,7 +173,7 @@
   top: 44%;
   z-index: -1;
   transform: translate(-50%,-50%);
-  color: rgba(17,18,23,.055);
+  color: rgba(99,179,237,.045);
   font: 800 clamp(76px, 13vw, 188px)/.72 var(--font-head);
   letter-spacing: -.075em;
   text-align: center;
@@ -185,10 +206,10 @@
 .reel-card-frame {
   display: block;
   padding: 12px;
-  border: 1px solid rgba(17,18,23,.16);
+  border: 1px solid rgba(99,179,237,.16);
   border-radius: 10px;
-  background: #f7f5f0;
-  box-shadow: 0 28px 65px rgba(25,25,31,.16);
+  background: rgba(10,16,31,.92);
+  box-shadow: 0 28px 75px rgba(0,0,0,.46);
   transition: border-color .3s ease, box-shadow .3s ease;
 }
 .reel-card .project-visual {
@@ -198,8 +219,8 @@
   pointer-events: none;
 }
 .reel-card.active .reel-card-frame {
-  border-color: color-mix(in srgb, var(--reel-color) 54%, rgba(17,18,23,.2));
-  box-shadow: 0 35px 90px rgba(20,20,25,.23);
+  border-color: color-mix(in srgb, var(--reel-color) 64%, rgba(99,179,237,.18));
+  box-shadow: 0 35px 95px rgba(0,0,0,.5), 0 0 38px color-mix(in srgb, var(--reel-color) 13%, transparent);
 }
 
 .reel-card-copy { display: block; padding: 14px 4px 0; }
@@ -211,7 +232,7 @@
 .reel-card-copy span { display: block; color: var(--project-muted); font: 8px var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
 .reel-card-copy strong { display: block; overflow: hidden; margin-top: 7px; color: var(--project-ink); font: 700 17px/1.2 var(--font-head); text-overflow: ellipsis; white-space: nowrap; }
 
-.reel-footer { min-height: 78px; border-top: 1px solid rgba(17,18,23,.11); }
+.reel-footer { min-height: 78px; border-top: 1px solid rgba(99,179,237,.11); }
 .reel-footer div span,
 .reel-footer div strong { display: block; }
 .reel-footer div strong { margin-top: 5px; color: var(--project-ink); font-size: 10px; }
@@ -228,7 +249,7 @@
   font: 9px var(--font-mono);
   letter-spacing: .12em;
 }
-.project-files-heading i { flex: 1; height: 1px; background: rgba(17,18,23,.13); }
+.project-files-heading i { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(99,179,237,.26), rgba(159,122,234,.08)); }
 
 .projects-grid {
   display: grid;
@@ -254,20 +275,20 @@
 .project-card:first-child .card-links { grid-column: 2; }
 
 .project-card {
-  background: rgba(249,247,242,.82);
-  border: 1px solid rgba(17,18,23,.13);
+  background: rgba(13,20,38,.86);
+  border: 1px solid var(--border);
   border-radius: 20px;
   padding: 32px;
   position: relative;
   overflow: visible;
-  transition: transform .36s cubic-bezier(.22,1,.36,1), border-color .3s ease, box-shadow .36s ease, background .3s ease;
+  transition: transform .52s cubic-bezier(.22,1,.36,1), border-color .35s ease, box-shadow .52s ease, background .35s ease;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
 .project-card.featured {
-  background: linear-gradient(145deg, color-mix(in srgb, var(--card-color) 7%, #f9f7f2), #f9f7f2 55%);
+  background: linear-gradient(145deg, color-mix(in srgb, var(--card-color) 6%, var(--surface)), var(--surface) 58%);
 }
 
 .project-card.expanded {
@@ -491,6 +512,10 @@
   from { opacity: 0; transform: translateY(14px); }
   to { opacity: 1; transform: translateY(0); }
 }
+@keyframes reel-aurora {
+  from { transform: translate3d(-12%, -5%, 0) scale(.92); background: rgba(99,179,237,.08); }
+  to { transform: translate3d(95%, 20%, 0) scale(1.12); background: rgba(159,122,234,.09); }
+}
 
 .card-stack {
   display: flex;
@@ -502,8 +527,8 @@
 
 .stack-chip {
   padding: 3px 10px;
-  background: rgba(17,18,23,.035);
-  border: 1px solid rgba(17,18,23,.1);
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
   border-radius: 6px;
   font-family: var(--font-mono);
   font-size: 11px;

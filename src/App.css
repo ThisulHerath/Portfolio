@@ -30,6 +30,7 @@ body {
   color: var(--text);
   font-family: var(--font-body);
   overflow-x: hidden;
+  overscroll-behavior-y: none;
 }
 
 ::selection { background: rgba(99,179,237,0.28); color: #fff; }
@@ -79,6 +80,10 @@ a:active { transition-duration: 80ms !important; }
   opacity: 1;
   transform: translateY(0);
   will-change: auto;
+}
+
+.reveal.visible .section-title {
+  animation: section-title-settle .75s cubic-bezier(.22,1,.36,1) both;
 }
 .reveal-left {
   opacity: 0;
@@ -188,6 +193,11 @@ section:not(:first-of-type)::before {
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
+}
+
+@keyframes section-title-settle {
+  from { letter-spacing: -.06em; filter: blur(7px); }
+  to { letter-spacing: -.03em; filter: blur(0); }
 }
 
 .gradient-text {
