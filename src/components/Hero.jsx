@@ -7,9 +7,41 @@ const signals = [
   { id: "delivery", label: "DELIVERY", value: "Docker + CI", note: "Reproducible shipping" },
 ];
 
+const tiltFrames = new WeakMap();
+
 export default function Hero() {
   const [activeSignal, setActiveSignal] = useState(0);
   const signal = signals[activeSignal];
+
+  const moveSystem = (event) => {
+    if (event.pointerType && event.pointerType !== "mouse") return;
+    const panel = event.currentTarget;
+    const bounds = panel.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width;
+    const y = (event.clientY - bounds.top) / bounds.height;
+    const previousFrame = tiltFrames.get(panel);
+    if (previousFrame) cancelAnimationFrame(previousFrame);
+
+    const frame = requestAnimationFrame(() => {
+      panel.style.setProperty("--tilt-x", `${(x - 0.5) * 7}deg`);
+      panel.style.setProperty("--tilt-y", `${(0.5 - y) * 5}deg`);
+      panel.style.setProperty("--system-x", `${x * 100}%`);
+      panel.style.setProperty("--system-y", `${y * 100}%`);
+      tiltFrames.delete(panel);
+    });
+    tiltFrames.set(panel, frame);
+  };
+
+  const resetSystem = (event) => {
+    const panel = event.currentTarget;
+    const previousFrame = tiltFrames.get(panel);
+    if (previousFrame) cancelAnimationFrame(previousFrame);
+    tiltFrames.delete(panel);
+    panel.style.setProperty("--tilt-x", "-3deg");
+    panel.style.setProperty("--tilt-y", "1deg");
+    panel.style.setProperty("--system-x", "50%");
+    panel.style.setProperty("--system-y", "50%");
+  };
 
   return (
     <section id="hero" className="hero">
@@ -26,7 +58,8 @@ export default function Hero() {
 
           <p className="hero-eyebrow">THISUL HERATH / AI ENGINEERING</p>
           <h1 className="hero-title">
-            I build intelligence<br />that <span>leaves <span className="keep-together">the notebook.</span></span>
+            <span className="hero-title-line"><span>I build intelligence</span></span>
+            <span className="hero-title-line"><span>that <em className="title-gradient">leaves <span className="keep-together">the notebook.</span></em></span></span>
           </h1>
 
           <p className="hero-desc">
@@ -50,7 +83,12 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="hero-system" aria-label="Interactive AI engineering profile">
+        <div
+          className="hero-system"
+          aria-label="Interactive AI engineering profile"
+          onPointerMove={moveSystem}
+          onPointerLeave={resetSystem}
+        >
           <div className="system-header">
             <span>PROFILE.NODE</span>
             <span className="system-state"><i /> ONLINE</span>
