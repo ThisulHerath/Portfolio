@@ -70,6 +70,14 @@ export default function FloatingParticles() {
   return (
     <div className="particles-container" aria-hidden="true">
       <canvas ref={canvasRef} className="grid-canvas" />
+      <div className="aurora-field">
+        <span className="aurora aurora-cyan" />
+        <span className="aurora aurora-violet" />
+        <span className="aurora aurora-green" />
+      </div>
+      <div className="signal-lanes">
+        {Array.from({ length: 6 }, (_, index) => <span key={index} />)}
+      </div>
       {objects.map((obj) => (
         <div
           key={obj.id}
