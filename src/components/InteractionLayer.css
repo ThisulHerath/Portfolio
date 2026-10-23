@@ -82,8 +82,8 @@ section.section-in-view::after { animation-play-state: running; }
 }
 @keyframes stamp-pulse { 50% { opacity: .28; transform: scaleX(.55); } }
 @keyframes view-depth-in {
-  from { translate: 0 38px; filter: blur(5px) saturate(.72); opacity: .18; }
-  to { translate: 0 0; filter: blur(0) saturate(1); opacity: 1; }
+  from { translate: 0 28px; opacity: .58; }
+  to { translate: 0 0; opacity: 1; }
 }
 
 @media (max-width: 900px), (pointer: coarse) {
