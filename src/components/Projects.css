@@ -111,8 +111,7 @@
   width: 520px;
   height: 280px;
   border-radius: 50%;
-  background: rgba(99,179,237,.08);
-  filter: blur(90px);
+  background: radial-gradient(ellipse, rgba(99,179,237,.12), transparent 70%);
   animation: reel-aurora 8s ease-in-out infinite alternate;
 }
 
@@ -162,8 +161,7 @@
   width: min(1000px, 90vw);
   height: 54px;
   border-radius: 50%;
-  background: rgba(99,179,237,.12);
-  filter: blur(26px);
+  background: radial-gradient(ellipse, rgba(99,179,237,.14), transparent 70%);
   transform: translateX(-50%);
 }
 
@@ -424,8 +422,7 @@
   right: -50px;
   bottom: -80px;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--card-color) 18%, transparent);
-  filter: blur(45px);
+  background: radial-gradient(circle, color-mix(in srgb, var(--card-color) 20%, transparent), transparent 70%);
 }
 
 .visual-topline {

@@ -33,7 +33,6 @@
   width: min(58vw, 860px);
   aspect-ratio: 1.7;
   border-radius: 50%;
-  filter: blur(110px);
   mix-blend-mode: screen;
   will-change: transform;
 }
@@ -117,7 +116,7 @@
 @media (max-width: 768px) {
   .flying-obj:nth-of-type(n + 10) { display: none; }
   .noise-overlay { opacity: .24; }
-  .aurora { width: 90vw; filter: blur(90px); opacity: .72; }
+  .aurora { width: 90vw; opacity: .62; }
   .signal-lanes span:nth-child(even) { display: none; }
 }
 

@@ -1,16 +1,14 @@
 import { useEffect, useRef } from "react";
 import "./InteractionLayer.css";
 
-export default function InteractionLayer() {
+export default function InteractionLayer({ activeSection }) {
   const effectsRef = useRef(null);
   const progressRef = useRef(null);
   const percentageRef = useRef(null);
-  const sectionRef = useRef(null);
 
   useEffect(() => {
     const root = document.documentElement;
     let scrollFrame = 0;
-    const sections = Array.from(document.querySelectorAll("section[id]"));
 
     const createRipple = (event) => {
       if (event.button !== 0 || !effectsRef.current) return;
@@ -32,30 +30,15 @@ export default function InteractionLayer() {
         root.style.setProperty("--signal-parallax", `${Math.round(progress * -46)}px`);
         progressRef.current?.style.setProperty("--hud-progress", progress);
         if (percentageRef.current) percentageRef.current.textContent = `${String(Math.round(progress * 100)).padStart(3, "0")}%`;
-        const marker = window.innerHeight * 0.42;
-        const currentSection = sections.find((section) => {
-          const bounds = section.getBoundingClientRect();
-          return bounds.top <= marker && bounds.bottom >= marker;
-        });
-        if (currentSection && sectionRef.current) sectionRef.current.textContent = currentSection.id.toUpperCase();
         scrollFrame = 0;
       });
     };
-
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        entry.target.classList.toggle("section-in-view", entry.isIntersecting);
-      });
-    }, { rootMargin: "-38% 0px -52% 0px", threshold: 0 });
-
-    sections.forEach((section) => sectionObserver.observe(section));
     window.addEventListener("pointerdown", createRipple, { passive: true });
     window.addEventListener("scroll", updateScroll, { passive: true });
     window.addEventListener("resize", updateScroll, { passive: true });
     updateScroll();
 
     return () => {
-      sectionObserver.disconnect();
       window.removeEventListener("pointerdown", createRipple);
       window.removeEventListener("scroll", updateScroll);
       window.removeEventListener("resize", updateScroll);
@@ -67,7 +50,7 @@ export default function InteractionLayer() {
     <div className="interaction-layer" aria-hidden="true">
       <div ref={effectsRef} className="click-effects" />
       <div className="scroll-hud">
-        <span ref={sectionRef}>HERO</span>
+        <span>{activeSection.toUpperCase()}</span>
         <div ref={progressRef} className="hud-track"><i /></div>
         <strong ref={percentageRef}>000%</strong>
       </div>

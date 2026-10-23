@@ -20,11 +20,10 @@
 .hero-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(120px);
   pointer-events: none;
 }
-.hero-orb-a { width: 520px; height: 520px; top: -220px; left: -160px; background: rgba(56,189,248,0.09); animation: hero-orb-drift-a 10s ease-in-out infinite alternate; }
-.hero-orb-b { width: 620px; height: 620px; right: -220px; bottom: -260px; background: rgba(159,122,234,0.1); animation: hero-orb-drift-b 12s ease-in-out infinite alternate; }
+.hero-orb-a { width: 620px; height: 620px; top: -270px; left: -210px; background: radial-gradient(circle, rgba(56,189,248,.12), transparent 68%); animation: hero-orb-drift-a 10s ease-in-out infinite alternate; }
+.hero-orb-b { width: 720px; height: 720px; right: -270px; bottom: -320px; background: radial-gradient(circle, rgba(159,122,234,.12), transparent 68%); animation: hero-orb-drift-b 12s ease-in-out infinite alternate; }
 
 .hero-inner {
   width: min(1240px, 100%);
@@ -137,9 +136,8 @@
   overflow: hidden;
   border: 1px solid rgba(99,179,237,0.2);
   border-radius: 22px;
-  background: rgba(7,12,24,0.78);
+  background: rgba(7,12,24,0.94);
   box-shadow: 0 40px 120px rgba(0,0,0,0.45), inset 0 1px rgba(255,255,255,0.04);
-  backdrop-filter: blur(18px);
   transform: perspective(1200px) rotateX(var(--tilt-y)) rotateY(var(--tilt-x)) translateZ(0);
   transition: transform .22s ease-out, border-color .35s ease, box-shadow .35s ease;
   animation: system-enter .95s .18s cubic-bezier(.22,1,.36,1) both;

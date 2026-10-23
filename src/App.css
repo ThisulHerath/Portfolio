@@ -50,20 +50,6 @@ a:active { transition-duration: 80ms !important; }
   outline: 2px solid var(--accent);
 }
 
-.pointer-aura {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 520px;
-  height: 520px;
-  pointer-events: none;
-  z-index: 0;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(99,179,237,0.065), transparent 70%);
-  transform: translate3d(calc(var(--pointer-x, 50vw) - 260px), calc(var(--pointer-y, 20vh) - 260px), 0);
-  will-change: transform;
-}
-
 /* Scrollbar */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
@@ -196,8 +182,19 @@ section:not(:first-of-type)::before {
 }
 
 @keyframes section-title-settle {
-  from { letter-spacing: -.06em; filter: blur(7px); }
-  to { letter-spacing: -.03em; filter: blur(0); }
+  from { letter-spacing: -.045em; opacity: .72; }
+  to { letter-spacing: -.03em; opacity: 1; }
+}
+
+/* Keep decorative loops alive only while their section is relevant. */
+.app:not([data-active-section="hero"]) .hero *,
+.app:not([data-active-section="hero"]) .hero::after,
+.app:not([data-active-section="projects"]) .projects .reel-ambient,
+.app:not([data-active-section="projects"]) .projects .solar-pulse i,
+.app:not([data-active-section="projects"]) .projects .chart-line,
+.app:not([data-active-section="lab"]) .workflow-lab .signal-orbit i,
+.app:not([data-active-section="hero"]):not([data-active-section="about"]) .kinetic-track {
+  animation-play-state: paused !important;
 }
 
 .gradient-text {
@@ -228,8 +225,6 @@ section:not(:first-of-type)::before {
 }
 
 @media (max-width: 768px) {
-  .pointer-aura { display: none; }
-
   .reveal,
   .reveal-left,
   .reveal-right { transition-delay: 0s; }

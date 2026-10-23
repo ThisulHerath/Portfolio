@@ -22,7 +22,7 @@ function generateObjects(count) {
 
 export default function FloatingParticles() {
   const canvasRef = useRef(null);
-  const [objects] = useState(() => generateObjects(18));
+  const [objects] = useState(() => generateObjects(10));
 
   // Canvas grid
   useEffect(() => {
@@ -76,7 +76,7 @@ export default function FloatingParticles() {
         <span className="aurora aurora-green" />
       </div>
       <div className="signal-lanes">
-        {Array.from({ length: 6 }, (_, index) => <span key={index} />)}
+        {Array.from({ length: 4 }, (_, index) => <span key={index} />)}
       </div>
       {objects.map((obj) => (
         <div

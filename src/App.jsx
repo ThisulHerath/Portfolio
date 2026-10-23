@@ -32,39 +32,13 @@ export default function App() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    let pointerFrame = 0;
-    let pointerX = 0;
-    let pointerY = 0;
-
-    const updatePointer = (event) => {
-      if (event.pointerType && event.pointerType !== "mouse") return;
-      pointerX = event.clientX;
-      pointerY = event.clientY;
-      if (pointerFrame) return;
-
-      pointerFrame = requestAnimationFrame(() => {
-        document.documentElement.style.setProperty("--pointer-x", `${pointerX}px`);
-        document.documentElement.style.setProperty("--pointer-y", `${pointerY}px`);
-        pointerFrame = 0;
-      });
-    };
-
-    window.addEventListener("pointermove", updatePointer, { passive: true });
-    return () => {
-      window.removeEventListener("pointermove", updatePointer);
-      if (pointerFrame) cancelAnimationFrame(pointerFrame);
-    };
-  }, []);
-
   return (
-    <div className="app">
+    <div className="app" data-active-section={activeSection}>
       <IntroSequence />
       <FloatingParticles />
       <Navbar activeSection={activeSection} />
       <CommandPalette />
-      <div className="pointer-aura" aria-hidden="true" />
-      <InteractionLayer />
+      <InteractionLayer activeSection={activeSection} />
       <Hero />
       <KineticBand />
       <About />
