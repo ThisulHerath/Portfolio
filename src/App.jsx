@@ -11,6 +11,7 @@ import FloatingParticles from "./components/FloatingParticles";
 import IntroSequence from "./components/IntroSequence";
 import KineticBand from "./components/KineticBand";
 import InteractionLayer from "./components/InteractionLayer";
+import SeasonalLayer from "./components/SeasonalLayer";
 import "./App.css";
 
 export default function App() {
@@ -36,6 +37,7 @@ export default function App() {
     <div className="app" data-active-section={activeSection}>
       <IntroSequence />
       <FloatingParticles />
+      <SeasonalLayer />
       <Navbar activeSection={activeSection} />
       <CommandPalette />
       <InteractionLayer activeSection={activeSection} />

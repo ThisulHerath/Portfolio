@@ -1,0 +1,150 @@
+.seasonal-layer {
+  --holiday-ice: #b9ecff;
+  --holiday-violet: #b8a4ff;
+  --holiday-pine: #68d391;
+  --holiday-ember: #fb7185;
+}
+
+.seasonal-snow {
+  position: fixed;
+  inset: 0;
+  z-index: 82;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: .82;
+  transition: opacity .3s ease;
+}
+
+.seasonal-layer.is-paused .seasonal-snow { opacity: 0; }
+
+.holiday-rail {
+  position: fixed;
+  left: max(20px, calc((100vw - 1400px) / 2 + 24px));
+  right: max(20px, calc((100vw - 1400px) / 2 + 24px));
+  top: 0;
+  z-index: 102;
+  height: 17px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  opacity: .88;
+  transition: opacity .3s ease;
+}
+
+.holiday-wire {
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 18px;
+  border-bottom: 1px solid rgba(147,166,200,.28);
+  border-radius: 0 0 50% 50%;
+}
+
+.holiday-light {
+  --light-color: var(--holiday-ice);
+  position: relative;
+  width: 5px;
+  height: 9px;
+  margin-top: 7px;
+  border-radius: 50% 50% 45% 45%;
+  background: var(--light-color);
+  box-shadow: 0 0 7px var(--light-color), 0 0 16px color-mix(in srgb, var(--light-color) 55%, transparent);
+  animation: holiday-signal 2.8s calc(var(--light-index) * -.24s) ease-in-out infinite;
+}
+
+.holiday-light::before {
+  content: '';
+  position: absolute;
+  left: 1px;
+  top: -4px;
+  width: 3px;
+  height: 4px;
+  border-radius: 1px;
+  background: #34425e;
+}
+
+.holiday-light.violet { --light-color: var(--holiday-violet); }
+.holiday-light.pine { --light-color: var(--holiday-pine); }
+.holiday-light.ember { --light-color: var(--holiday-ember); }
+.seasonal-layer.is-paused .holiday-rail { opacity: .2; }
+.seasonal-layer.is-paused .holiday-light { animation-play-state: paused; box-shadow: none; }
+
+.winter-toggle {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 190;
+  display: grid;
+  grid-template-columns: 28px auto 6px;
+  align-items: center;
+  gap: 10px;
+  min-width: 174px;
+  padding: 9px 11px;
+  border: 1px solid rgba(99,179,237,.2);
+  border-radius: 11px;
+  background: rgba(5,8,16,.92);
+  color: var(--text);
+  font-family: var(--font-mono);
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 14px 40px rgba(0,0,0,.28), inset 0 1px rgba(255,255,255,.035);
+  transition: transform .22s ease, border-color .22s ease, background .22s ease;
+}
+
+.winter-toggle:hover {
+  transform: translateY(-2px);
+  border-color: rgba(185,236,255,.42);
+  background: rgba(8,13,26,.97);
+}
+
+.winter-toggle:active { transform: translateY(0) scale(.98); }
+
+.winter-icon {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(185,236,255,.2);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(99,179,237,.13), rgba(159,122,234,.1));
+  color: var(--holiday-ice);
+  font-size: 14px;
+  transition: transform .35s cubic-bezier(.22,1,.36,1);
+}
+
+.winter-toggle:hover .winter-icon { transform: rotate(45deg); }
+.winter-copy { display: flex; flex-direction: column; gap: 3px; }
+.winter-copy small { color: #627696; font-size: 7px; letter-spacing: .12em; }
+.winter-copy strong { color: var(--holiday-ice); font-size: 8px; font-weight: 500; letter-spacing: .08em; }
+.seasonal-layer.is-paused .winter-copy strong { color: #627696; }
+
+.winter-state {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--holiday-pine);
+  box-shadow: 0 0 8px var(--holiday-pine);
+}
+
+.seasonal-layer.is-paused .winter-state { background: #52627f; box-shadow: none; }
+
+@keyframes holiday-signal {
+  0%, 100% { opacity: .45; transform: translateY(0) scale(.88); }
+  50% { opacity: 1; transform: translateY(1px) scale(1); }
+}
+
+@media (max-width: 768px) {
+  .holiday-rail { left: 16px; right: 16px; }
+  .holiday-light:nth-of-type(even) { display: none; }
+  .winter-toggle { left: 10px; bottom: 10px; min-width: 0; grid-template-columns: 26px 6px; padding: 8px; }
+  .winter-copy { display: none; }
+  .winter-icon { width: 26px; height: 26px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .holiday-light { animation: none; }
+  .winter-toggle,
+  .winter-icon { transition: none; }
+}
