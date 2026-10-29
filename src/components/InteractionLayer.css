@@ -62,6 +62,14 @@
 section.section-in-view::after { animation-play-state: running; }
 
 @supports (animation-timeline: view()) {
+  .section-header {
+    animation-name: view-heading-in;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: view();
+    animation-range: entry 4% cover 28%;
+  }
+
   .journey-board,
   .lab-console,
   .skill-card,
@@ -83,6 +91,11 @@ section.section-in-view::after { animation-play-state: running; }
 @keyframes stamp-pulse { 50% { opacity: .28; transform: scaleX(.55); } }
 @keyframes view-depth-in {
   from { translate: 0 28px; opacity: .58; }
+  to { translate: 0 0; opacity: 1; }
+}
+
+@keyframes view-heading-in {
+  from { translate: 0 24px; opacity: .35; }
   to { translate: 0 0; opacity: 1; }
 }
 

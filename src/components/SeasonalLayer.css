@@ -14,6 +14,7 @@
   pointer-events: none;
   opacity: .82;
   transition: opacity .3s ease;
+  contain: strict;
 }
 
 .seasonal-layer.is-paused .seasonal-snow { opacity: 0; }
@@ -30,6 +31,20 @@
   pointer-events: none;
   opacity: .88;
   transition: opacity .3s ease;
+}
+
+.holiday-rail::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 86px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(185,236,255,.9), transparent);
+  opacity: 0;
+  transform: translate3d(-120px, 0, 0);
+  animation: holiday-rail-signal 7s 1.4s linear infinite;
+  will-change: transform, opacity;
 }
 
 .holiday-wire {
@@ -70,6 +85,35 @@
 .holiday-light.ember { --light-color: var(--holiday-ember); }
 .seasonal-layer.is-paused .holiday-rail { opacity: .2; }
 .seasonal-layer.is-paused .holiday-light { animation-play-state: paused; box-shadow: none; }
+.seasonal-layer.is-paused .holiday-rail::after { animation-play-state: paused; opacity: 0; }
+
+.winter-burst {
+  position: fixed;
+  inset: 0;
+  z-index: 191;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.winter-burst-particle {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--holiday-ice);
+  box-shadow: 0 0 8px rgba(185,236,255,.7);
+  opacity: 0;
+  transform: translate(-50%,-50%) scale(.35);
+  animation: winter-burst .78s var(--burst-delay, 0ms) cubic-bezier(.22,1,.36,1) forwards;
+}
+
+.winter-burst-particle.is-star {
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  background: var(--holiday-violet);
+  transform: translate(-50%,-50%) rotate(45deg) scale(.35);
+}
 
 .winter-toggle {
   position: fixed;
@@ -130,9 +174,66 @@
 
 .seasonal-layer.is-paused .winter-state { background: #52627f; box-shadow: none; }
 
+/* Seasonal motion accents inherit the current portfolio language. */
+.seasonal-layer.is-active ~ .hero .btn-primary::after {
+  content: '';
+  position: absolute;
+  right: 12px;
+  top: 7px;
+  width: 7px;
+  height: 7px;
+  background: rgba(255,255,255,.78);
+  clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+  pointer-events: none;
+  animation: festive-cta-star 4.8s 1.6s ease-in-out infinite;
+}
+
+.seasonal-layer.is-active ~ section .tag {
+  position: relative;
+  overflow: visible;
+}
+
+.seasonal-layer.is-active ~ section .tag::before {
+  content: '';
+  position: absolute;
+  right: -8px;
+  top: -7px;
+  width: 7px;
+  height: 7px;
+  background: var(--holiday-ice);
+  clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+  filter: drop-shadow(0 0 5px rgba(185,236,255,.7));
+  animation: seasonal-tag-twinkle 3.4s ease-in-out infinite;
+}
+
 @keyframes holiday-signal {
   0%, 100% { opacity: .45; transform: translateY(0) scale(.88); }
   50% { opacity: 1; transform: translateY(1px) scale(1); }
+}
+
+@keyframes holiday-rail-signal {
+  0%, 15% { opacity: 0; transform: translate3d(-120px, 0, 0); }
+  22% { opacity: .9; }
+  78% { opacity: .55; }
+  88%, 100% { opacity: 0; transform: translate3d(calc(100vw - 70px), 0, 0); }
+}
+
+@keyframes winter-burst {
+  0% { opacity: 0; transform: translate(-50%,-50%) scale(.3); }
+  18% { opacity: 1; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--burst-x)), calc(-50% + var(--burst-y))) rotate(150deg) scale(.05); }
+}
+
+@keyframes festive-cta-star {
+  0%, 62%, 100% { opacity: 0; transform: translate3d(-8px, 5px, 0) rotate(0deg) scale(.5); }
+  70% { opacity: 1; transform: translate3d(0, 0, 0) rotate(70deg) scale(1); }
+  82% { opacity: 0; transform: translate3d(8px, -5px, 0) rotate(150deg) scale(.5); }
+}
+
+@keyframes seasonal-tag-twinkle {
+  0%, 58%, 100% { opacity: .2; transform: rotate(0deg) scale(.7); }
+  68% { opacity: 1; transform: rotate(70deg) scale(1.15); }
+  78% { opacity: .35; transform: rotate(130deg) scale(.75); }
 }
 
 @media (max-width: 768px) {
@@ -144,7 +245,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .holiday-light { animation: none; }
+  .holiday-light,
+  .holiday-rail::after,
+  .seasonal-layer.is-active ~ .hero .btn-primary::after,
+  .seasonal-layer.is-active ~ section .tag::before { animation: none; }
   .winter-toggle,
   .winter-icon { transition: none; }
 }

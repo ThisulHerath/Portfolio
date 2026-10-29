@@ -11,7 +11,35 @@ function readStoredPreference() {
 
 export default function SeasonalLayer() {
   const canvasRef = useRef(null);
+  const burstRef = useRef(null);
   const [enabled, setEnabled] = useState(readStoredPreference);
+
+  const toggleWinter = (event) => {
+    const willEnable = !enabled;
+    setEnabled(willEnable);
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !burstRef.current) return;
+
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const originX = bounds.left + bounds.width / 2;
+    const originY = bounds.top + bounds.height / 2;
+    const particleCount = willEnable ? 16 : 6;
+
+    Array.from({ length: particleCount }, (_, index) => {
+      const particle = document.createElement("i");
+      const angle = (Math.PI * 2 * index) / particleCount + (Math.random() - 0.5) * 0.45;
+      const distance = (willEnable ? 42 : 24) + Math.random() * (willEnable ? 54 : 22);
+      particle.className = `winter-burst-particle ${index % 3 === 0 ? "is-star" : ""}`;
+      particle.style.left = `${originX}px`;
+      particle.style.top = `${originY}px`;
+      particle.style.setProperty("--burst-x", `${Math.cos(angle) * distance}px`);
+      particle.style.setProperty("--burst-y", `${Math.sin(angle) * distance}px`);
+      particle.style.setProperty("--burst-delay", `${Math.random() * 80}ms`);
+      burstRef.current.appendChild(particle);
+      particle.addEventListener("animationend", () => particle.remove(), { once: true });
+      return particle;
+    });
+  };
 
   useEffect(() => {
     window.localStorage.setItem("portfolio-winter-protocol", enabled ? "on" : "off");
@@ -122,6 +150,7 @@ export default function SeasonalLayer() {
   return (
     <div className={`seasonal-layer ${enabled ? "is-active" : "is-paused"}`}>
       <canvas ref={canvasRef} className="seasonal-snow" aria-hidden="true" />
+      <div ref={burstRef} className="winter-burst" aria-hidden="true" />
 
       <div className="holiday-rail" aria-hidden="true">
         <i className="holiday-wire" />
@@ -139,7 +168,7 @@ export default function SeasonalLayer() {
         className="winter-toggle"
         aria-pressed={enabled}
         aria-label={`${enabled ? "Disable" : "Enable"} winter effects`}
-        onClick={() => setEnabled((current) => !current)}
+        onClick={toggleWinter}
       >
         <span className="winter-icon" aria-hidden="true">✦</span>
         <span className="winter-copy">
