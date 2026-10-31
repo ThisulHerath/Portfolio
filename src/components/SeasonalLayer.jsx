@@ -61,26 +61,40 @@ export default function SeasonalLayer() {
     let pointerX = -1000;
     let pointerY = -1000;
 
-    const createFlake = (randomY = false) => ({
-      x: Math.random() * width,
-      y: randomY ? Math.random() * height : -12 - Math.random() * height * 0.18,
-      radius: 0.7 + Math.random() * 1.8,
-      speed: 0.45 + Math.random() * 0.85,
-      drift: 0.15 + Math.random() * 0.28,
-      phase: Math.random() * Math.PI * 2,
-      alpha: 0.28 + Math.random() * 0.52,
-    });
+    const snowLayers = [
+      { alpha: 0.28, radius: [0.45, 0.9], speed: [0.28, 0.58], drift: [0.08, 0.16] },
+      { alpha: 0.52, radius: [0.85, 1.45], speed: [0.55, 0.95], drift: [0.14, 0.26] },
+      { alpha: 0.82, radius: [1.35, 2.35], speed: [0.9, 1.48], drift: [0.22, 0.38] },
+    ];
+
+    const randomBetween = ([minimum, maximum]) => minimum + Math.random() * (maximum - minimum);
+
+    const createFlake = (randomY = false) => {
+      const layer = Math.floor(Math.random() * snowLayers.length);
+      const settings = snowLayers[layer];
+
+      return {
+        layer,
+        x: Math.random() * width,
+        y: randomY ? Math.random() * height : -12 - Math.random() * height * 0.18,
+        radius: randomBetween(settings.radius),
+        speed: randomBetween(settings.speed),
+        drift: randomBetween(settings.drift),
+        phase: Math.random() * Math.PI * 2,
+      };
+    };
 
     const resize = () => {
       width = window.innerWidth;
       height = window.innerHeight;
-      const ratio = Math.min(window.devicePixelRatio || 1, 1.35);
+      const ratio = Math.min(window.devicePixelRatio || 1, 1.25);
       canvas.width = Math.round(width * ratio);
       canvas.height = Math.round(height * ratio);
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       context.setTransform(ratio, 0, 0, ratio, 0, 0);
-      const count = width < 700 ? 16 : 34;
+      const limitedCPU = (window.navigator.hardwareConcurrency || 8) <= 4;
+      const count = width < 700 ? 26 : limitedCPU ? 46 : 64;
       flakes = Array.from({ length: count }, () => createFlake(true));
     };
 
@@ -101,7 +115,6 @@ export default function SeasonalLayer() {
       const delta = previousTime ? Math.min((time - previousTime) / 33, 2) : 1;
       previousTime = time;
       context.clearRect(0, 0, width, height);
-      context.fillStyle = "#dff5ff";
 
       flakes.forEach((flake) => {
         const distanceX = flake.x - pointerX;
@@ -110,7 +123,7 @@ export default function SeasonalLayer() {
 
         if (distanceSquared < 19000) {
           const force = (19000 - distanceSquared) / 19000;
-          flake.x += Math.sign(distanceX || 1) * force * 1.8 * delta;
+          flake.x += Math.sign(distanceX || 1) * force * (1.15 + flake.layer * 0.45) * delta;
         }
 
         flake.y += flake.speed * delta;
@@ -120,9 +133,17 @@ export default function SeasonalLayer() {
         if (flake.x < -8) flake.x = width + 8;
         if (flake.x > width + 8) flake.x = -8;
 
-        context.globalAlpha = flake.alpha;
+      });
+
+      context.fillStyle = "#dff5ff";
+      snowLayers.forEach((settings, layer) => {
+        context.globalAlpha = settings.alpha;
         context.beginPath();
-        context.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+        flakes.forEach((flake) => {
+          if (flake.layer !== layer) return;
+          context.moveTo(flake.x + flake.radius, flake.y);
+          context.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+        });
         context.fill();
       });
       context.globalAlpha = 1;
