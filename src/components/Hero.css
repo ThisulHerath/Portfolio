@@ -298,8 +298,19 @@
   .status-location { display: none; }
   .hero-title { max-width: 100%; font-size: clamp(34px, 9vw, 42px); }
   .hero-desc { font-size: 15px; line-height: 1.7; }
-  .hero-actions { display: grid; grid-template-columns: 1fr 1fr; }
-  .btn-primary { grid-column: 1 / -1; }
+  .hero-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 12px;
+  }
+  .hero-actions .btn-primary,
+  .hero-actions .btn-outline {
+    width: 100%;
+    min-height: 56px;
+    padding-inline: 18px;
+  }
   .btn-quiet { display: none; }
   .hero-proof { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 38px; }
   .hero-proof strong { font-size: 14px; }
