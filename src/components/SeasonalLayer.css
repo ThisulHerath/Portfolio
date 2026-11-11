@@ -15,6 +15,8 @@
   opacity: .92;
   transition: opacity .3s ease;
   contain: strict;
+  transform: translateZ(0);
+  will-change: opacity;
 }
 
 .seasonal-layer.is-paused .seasonal-snow { opacity: 0; }
@@ -105,6 +107,7 @@
   opacity: 0;
   transform: translate(-50%,-50%) scale(.35);
   animation: winter-burst .78s var(--burst-delay, 0ms) cubic-bezier(.22,1,.36,1) forwards;
+  will-change: transform, opacity;
 }
 
 .winter-burst-particle.is-star {
@@ -237,6 +240,7 @@
 }
 
 @media (max-width: 768px) {
+  .seasonal-snow { opacity: .82; }
   .holiday-rail { left: 16px; right: 16px; }
   .holiday-light:nth-of-type(even) { display: none; }
   .winter-toggle { left: 10px; bottom: 10px; min-width: 0; grid-template-columns: 26px 6px; padding: 8px; }

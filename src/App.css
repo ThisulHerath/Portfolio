@@ -197,6 +197,14 @@ section:not(:first-of-type)::before {
   animation-play-state: paused !important;
 }
 
+/* Give scrolling and the snow canvas priority over nonessential ambient loops. */
+html.is-scrolling .grid-canvas,
+html.is-scrolling .aurora,
+html.is-scrolling .signal-lanes span,
+html.is-scrolling .flying-obj {
+  animation-play-state: paused !important;
+}
+
 .gradient-text {
   background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
   background-size: 200% 200%;

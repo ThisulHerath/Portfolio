@@ -49,90 +49,104 @@ export default function SeasonalLayer() {
     if (!enabled) return undefined;
 
     const canvas = canvasRef.current;
-    const context = canvas?.getContext("2d");
+    const context = canvas?.getContext("2d", { alpha: true, desynchronized: true });
     if (!canvas || !context) return undefined;
 
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const pointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const connection = window.navigator.connection;
     let width = window.innerWidth;
     let height = window.innerHeight;
     let flakes = [];
     let frame = 0;
+    let resizeFrame = 0;
     let previousTime = 0;
     let pointerX = -1000;
     let pointerY = -1000;
+    let pointerActive = false;
+    let running = false;
 
     const snowLayers = [
-      { alpha: 0.28, radius: [0.45, 0.9], speed: [0.28, 0.58], drift: [0.08, 0.16] },
-      { alpha: 0.52, radius: [0.85, 1.45], speed: [0.55, 0.95], drift: [0.14, 0.26] },
-      { alpha: 0.82, radius: [1.35, 2.35], speed: [0.9, 1.48], drift: [0.22, 0.38] },
+      { alpha: 0.28, radius: [0.45, 0.9], speed: [18, 29], drift: [3, 7] },
+      { alpha: 0.52, radius: [0.85, 1.45], speed: [30, 47], drift: [7, 12] },
+      { alpha: 0.82, radius: [1.35, 2.35], speed: [48, 72], drift: [11, 18] },
     ];
 
     const randomBetween = ([minimum, maximum]) => minimum + Math.random() * (maximum - minimum);
 
-    const createFlake = (randomY = false) => {
-      const layer = Math.floor(Math.random() * snowLayers.length);
+    const resetFlake = (flake = {}, randomY = false) => {
+      const layer = Math.min(Math.floor(Math.random() * snowLayers.length), snowLayers.length - 1);
       const settings = snowLayers[layer];
 
-      return {
-        layer,
-        x: Math.random() * width,
-        y: randomY ? Math.random() * height : -12 - Math.random() * height * 0.18,
-        radius: randomBetween(settings.radius),
-        speed: randomBetween(settings.speed),
-        drift: randomBetween(settings.drift),
-        phase: Math.random() * Math.PI * 2,
-      };
+      flake.layer = layer;
+      flake.x = Math.random() * width;
+      flake.y = randomY ? Math.random() * height : -12 - Math.random() * Math.min(height * 0.18, 120);
+      flake.radius = randomBetween(settings.radius);
+      flake.speed = randomBetween(settings.speed);
+      flake.drift = randomBetween(settings.drift);
+      flake.phase = Math.random() * Math.PI * 2;
+      return flake;
     };
 
     const resize = () => {
       width = window.innerWidth;
       height = window.innerHeight;
-      const ratio = Math.min(window.devicePixelRatio || 1, 1.25);
+      const isMobile = width < 700;
+      const ratio = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 1.25);
       canvas.width = Math.round(width * ratio);
       canvas.height = Math.round(height * ratio);
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       context.setTransform(ratio, 0, 0, ratio, 0, 0);
       const limitedCPU = (window.navigator.hardwareConcurrency || 8) <= 4;
-      const count = width < 700 ? 26 : limitedCPU ? 46 : 64;
-      flakes = Array.from({ length: count }, () => createFlake(true));
+      const economical = limitedCPU || connection?.saveData;
+      const count = isMobile ? (economical ? 22 : 30) : (economical ? 46 : 64);
+      flakes = Array.from({ length: count }, (_, index) => resetFlake(flakes[index], true));
+    };
+
+    const queueResize = () => {
+      if (resizeFrame) return;
+      resizeFrame = window.requestAnimationFrame(() => {
+        resizeFrame = 0;
+        resize();
+      });
     };
 
     const updatePointer = (event) => {
-      if (event.pointerType && event.pointerType !== "mouse") return;
       pointerX = event.clientX;
       pointerY = event.clientY;
+      pointerActive = true;
     };
 
     const clearPointer = () => {
       pointerX = -1000;
       pointerY = -1000;
+      pointerActive = false;
     };
 
-    const draw = (time = 0) => {
-      frame = window.requestAnimationFrame(draw);
-      if (document.hidden || time - previousTime < 33) return;
-      const delta = previousTime ? Math.min((time - previousTime) / 33, 2) : 1;
+    const paint = (time, shouldMove = true) => {
+      const delta = shouldMove && previousTime ? Math.min((time - previousTime) / 1000, 0.034) : 0;
       previousTime = time;
       context.clearRect(0, 0, width, height);
 
       flakes.forEach((flake) => {
-        const distanceX = flake.x - pointerX;
-        const distanceY = flake.y - pointerY;
-        const distanceSquared = distanceX * distanceX + distanceY * distanceY;
+        if (shouldMove && pointerActive) {
+          const distanceX = flake.x - pointerX;
+          const distanceY = flake.y - pointerY;
+          const distanceSquared = distanceX * distanceX + distanceY * distanceY;
 
-        if (distanceSquared < 19000) {
-          const force = (19000 - distanceSquared) / 19000;
-          flake.x += Math.sign(distanceX || 1) * force * (1.15 + flake.layer * 0.45) * delta;
+          if (distanceSquared < 19000) {
+            const force = (19000 - distanceSquared) / 19000;
+            flake.x += Math.sign(distanceX || 1) * force * (36 + flake.layer * 12) * delta;
+          }
         }
 
         flake.y += flake.speed * delta;
-        flake.x += Math.sin(flake.y * 0.012 + flake.phase) * flake.drift * delta;
+        flake.x += Math.sin(time * 0.00055 + flake.phase) * flake.drift * delta;
 
-        if (flake.y > height + 8) Object.assign(flake, createFlake(false));
+        if (flake.y > height + 8) resetFlake(flake, false);
         if (flake.x < -8) flake.x = width + 8;
         if (flake.x > width + 8) flake.x = -8;
-
       });
 
       context.fillStyle = "#dff5ff";
@@ -149,22 +163,49 @@ export default function SeasonalLayer() {
       context.globalAlpha = 1;
     };
 
-    resize();
-    if (reducedMotion) {
-      draw(34);
-      window.cancelAnimationFrame(frame);
-    } else {
+    const draw = (time) => {
+      if (!running) return;
+      paint(time);
       frame = window.requestAnimationFrame(draw);
+    };
+
+    const stop = () => {
+      running = false;
+      previousTime = 0;
+      window.cancelAnimationFrame(frame);
+    };
+
+    const start = () => {
+      if (running || document.hidden || motionQuery.matches) return;
+      running = true;
+      previousTime = 0;
+      frame = window.requestAnimationFrame(draw);
+    };
+
+    const updateVisibility = () => {
+      if (document.hidden) stop();
+      else start();
+    };
+
+    resize();
+    if (motionQuery.matches) paint(0, false);
+    else {
+      start();
+      if (pointerQuery.matches) {
       window.addEventListener("pointermove", updatePointer, { passive: true });
       document.documentElement.addEventListener("pointerleave", clearPointer, { passive: true });
+      }
     }
-    window.addEventListener("resize", resize, { passive: true });
+    document.addEventListener("visibilitychange", updateVisibility);
+    window.addEventListener("resize", queueResize, { passive: true });
 
     return () => {
-      window.cancelAnimationFrame(frame);
+      stop();
+      window.cancelAnimationFrame(resizeFrame);
       window.removeEventListener("pointermove", updatePointer);
       document.documentElement.removeEventListener("pointerleave", clearPointer);
-      window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", updateVisibility);
+      window.removeEventListener("resize", queueResize);
     };
   }, [enabled]);
 

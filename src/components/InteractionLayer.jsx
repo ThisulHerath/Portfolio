@@ -9,6 +9,7 @@ export default function InteractionLayer({ activeSection }) {
   useEffect(() => {
     const root = document.documentElement;
     let scrollFrame = 0;
+    let scrollIdleTimer = 0;
 
     const createRipple = (event) => {
       if (event.button !== 0 || !effectsRef.current) return;
@@ -21,6 +22,9 @@ export default function InteractionLayer({ activeSection }) {
     };
 
     const updateScroll = () => {
+      root.classList.add("is-scrolling");
+      window.clearTimeout(scrollIdleTimer);
+      scrollIdleTimer = window.setTimeout(() => root.classList.remove("is-scrolling"), 140);
       if (scrollFrame) return;
       scrollFrame = requestAnimationFrame(() => {
         const max = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
@@ -43,6 +47,8 @@ export default function InteractionLayer({ activeSection }) {
       window.removeEventListener("scroll", updateScroll);
       window.removeEventListener("resize", updateScroll);
       if (scrollFrame) cancelAnimationFrame(scrollFrame);
+      window.clearTimeout(scrollIdleTimer);
+      root.classList.remove("is-scrolling");
     };
   }, []);
 
