@@ -193,6 +193,11 @@ section:not(:first-of-type)::before {
 .app:not([data-active-section="projects"]) .projects .solar-pulse i,
 .app:not([data-active-section="projects"]) .projects .chart-line,
 .app:not([data-active-section="lab"]) .workflow-lab .signal-orbit i,
+.app:not([data-active-section="signal"]) .signal-map .signal-grid,
+.app:not([data-active-section="signal"]) .signal-map .signal-sweep,
+.app:not([data-active-section="signal"]) .signal-map .signal-links path,
+.app:not([data-active-section="signal"]) .signal-map .signal-core i,
+.app:not([data-active-section="signal"]) .signal-map .signal-node > i,
 .app:not([data-active-section="hero"]):not([data-active-section="about"]) .kinetic-track {
   animation-play-state: paused !important;
 }
@@ -201,7 +206,11 @@ section:not(:first-of-type)::before {
 html.is-scrolling .grid-canvas,
 html.is-scrolling .aurora,
 html.is-scrolling .signal-lanes span,
-html.is-scrolling .flying-obj {
+html.is-scrolling .flying-obj,
+html.is-scrolling .signal-map .signal-grid,
+html.is-scrolling .signal-map .signal-sweep,
+html.is-scrolling .signal-map .signal-links path,
+html.is-scrolling .signal-map .signal-core i {
   animation-play-state: paused !important;
 }
 

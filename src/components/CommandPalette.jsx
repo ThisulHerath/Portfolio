@@ -5,6 +5,7 @@ import "./CommandPalette.css";
 const commands = [
   { label: "Go to home", hint: "Introduction", type: "section", target: "hero", icon: "⌂" },
   { label: "Explore my AI workflow", hint: "Interactive lab", type: "section", target: "lab", icon: "◇" },
+  { label: "Open the AI system map", hint: "Interactive constellation", type: "section", target: "signal", icon: "✦" },
   { label: "View selected projects", hint: "Case studies", type: "section", target: "projects", icon: "↗" },
   { label: "See skills and tools", hint: "Capabilities", type: "section", target: "skills", icon: "#" },
   { label: "Contact me", hint: "Internship opportunities", type: "section", target: "contact", icon: "@" },
