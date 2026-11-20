@@ -285,7 +285,7 @@ a.info-value:hover { color: var(--accent); }
 }
 
 @media (max-width: 768px) {
-  .contact { padding: 84px 16px 44px; }
+  .contact { padding: 84px 16px 112px; }
   .contact-subtitle { font-size: 15px; line-height: 1.65; }
   .contact-grid { gap: 28px; margin-top: 32px; }
   .info-card { padding: 16px; }

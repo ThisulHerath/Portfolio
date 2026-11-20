@@ -21,6 +21,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 78px;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -42,6 +43,9 @@ textarea {
   outline-offset: 4px;
   -webkit-tap-highlight-color: transparent;
 }
+
+button,
+a { touch-action: manipulation; }
 
 button:active,
 a:active { transition-duration: 80ms !important; }
@@ -250,4 +254,22 @@ html.is-scrolling .signal-map .signal-core i {
     font-size: clamp(28px, 9vw, 38px);
     line-height: 1.15;
   }
+
+  section:not(.hero) { scroll-margin-top: 62px; }
+
+  /* Keep mobile rendering light while preserving the same visual language. */
+  .orb { display: none !important; }
+  .signal-sweep,
+  .signal-links path.active { filter: none; }
+  .project-card,
+  .skill-card,
+  .lab-console,
+  .signal-visual-frame { box-shadow: 0 18px 52px rgba(0,0,0,.3), inset 0 1px rgba(255,255,255,.025); }
+}
+
+@media (pointer: coarse) {
+  .project-card:hover,
+  .skill-card:hover,
+  .lab-stage-list button:hover { transform: none; }
+  .signal-node:hover { transform: translate(-50%, -50%); }
 }

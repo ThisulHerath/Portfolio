@@ -243,9 +243,10 @@
   .seasonal-snow { opacity: .82; }
   .holiday-rail { left: 16px; right: 16px; }
   .holiday-light:nth-of-type(even) { display: none; }
-  .winter-toggle { left: 10px; bottom: 10px; min-width: 0; grid-template-columns: 26px 6px; padding: 8px; }
+  .winter-toggle { left: 10px; bottom: calc(78px + env(safe-area-inset-bottom)); min-width: 0; grid-template-columns: 26px 6px; padding: 8px; }
   .winter-copy { display: none; }
   .winter-icon { width: 26px; height: 26px; }
+  .seasonal-layer.is-active ~ section .tag::before { filter: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

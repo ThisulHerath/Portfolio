@@ -12,6 +12,7 @@ import FloatingParticles from "./components/FloatingParticles";
 import IntroSequence from "./components/IntroSequence";
 import KineticBand from "./components/KineticBand";
 import InteractionLayer from "./components/InteractionLayer";
+import MobileDock from "./components/MobileDock";
 import SeasonalLayer from "./components/SeasonalLayer";
 import "./App.css";
 
@@ -42,6 +43,7 @@ export default function App() {
       <Navbar activeSection={activeSection} />
       <CommandPalette />
       <InteractionLayer activeSection={activeSection} />
+      <MobileDock activeSection={activeSection} />
       <Hero />
       <KineticBand />
       <About />

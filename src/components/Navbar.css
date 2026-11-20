@@ -152,7 +152,7 @@
 .hamburger span.open:nth-child(2) { opacity: 0; }
 .hamburger span.open:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-@media (max-width: 768px) {
+@media (max-width: 1080px) {
   .navbar { padding: 12px 0; }
   .nav-inner { padding: 0 16px; }
   .nav-logo { font-size: 18px; }
@@ -185,4 +185,8 @@
   .nav-link { width: 100%; text-align: center; padding: 12px; }
   .nav-cta { margin-left: 0; width: 100%; text-align: center; }
   .command-trigger { width: 100%; justify-content: center; margin-left: 0; padding: 12px; }
+}
+
+@media (max-width: 768px) {
+  .nav-links { padding-bottom: 88px; }
 }
