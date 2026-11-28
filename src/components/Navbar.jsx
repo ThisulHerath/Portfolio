@@ -56,7 +56,7 @@ export default function Navbar({ activeSection }) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Resume ↗
+            Resume
           </a>
           <button
             type="button"

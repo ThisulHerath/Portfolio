@@ -56,7 +56,7 @@
   }
 
   .mobile-dock button > span { font-size: 15px; line-height: 1; }
-  .mobile-dock button > small { overflow: hidden; font-size: 7px; letter-spacing: .06em; text-overflow: ellipsis; }
+  .mobile-dock button > small { overflow: hidden; font-size: 11px; letter-spacing: .03em; text-overflow: ellipsis; }
   .mobile-dock button.active { background: linear-gradient(145deg, rgba(99,179,237,.12), rgba(159,122,234,.08)); color: var(--text); }
   .mobile-dock button.active > span { color: var(--accent); text-shadow: 0 0 14px rgba(99,179,237,.65); }
   .mobile-dock button.active::after {
@@ -82,7 +82,7 @@
 @media (max-width: 360px) {
   .mobile-dock { width: calc(100% - 12px); padding: 5px; border-radius: 16px; }
   .mobile-dock button { height: 46px; }
-  .mobile-dock button > small { font-size: 6px; }
+  .mobile-dock button > small { font-size: 10px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

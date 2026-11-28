@@ -60,7 +60,7 @@
 }
 
 .lab-stage-list strong { font: 650 14px var(--font-head); }
-.lab-stage-list small { color: var(--muted); font: 10px var(--font-mono); }
+.lab-stage-list small { color: var(--muted); font: 12px var(--font-mono); }
 
 .lab-console {
   position: relative;
@@ -142,9 +142,9 @@
 
 .console-kicker { margin-bottom: 12px; color: var(--accent2); font: 10px var(--font-mono); letter-spacing: 0.1em; }
 .console-stage h3 { max-width: 520px; font: 700 clamp(24px, 3vw, 38px)/1.16 var(--font-head); letter-spacing: -0.03em; }
-.console-description { max-width: 520px; margin-top: 18px; color: var(--muted); font-size: 15px; line-height: 1.75; }
+.console-description { max-width: 520px; margin-top: 18px; color: var(--muted); font-size: 16px; line-height: 1.75; }
 .console-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
-.console-tools span { padding: 6px 10px; border: 1px solid rgba(255,255,255,0.08); border-radius: 7px; background: rgba(255,255,255,0.035); color: var(--text); font: 10px var(--font-mono); }
+.console-tools span { padding: 7px 11px; border: 1px solid rgba(255,255,255,0.08); border-radius: 7px; background: rgba(255,255,255,0.035); color: var(--text); font: 12px var(--font-mono); }
 
 .console-output {
   margin-top: 34px;

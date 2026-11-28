@@ -32,6 +32,7 @@ body {
   font-family: var(--font-body);
   overflow-x: hidden;
   overscroll-behavior-y: none;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection { background: rgba(99,179,237,0.28); color: #fff; }
@@ -145,7 +146,7 @@ section:not(:first-of-type)::before {
   border: 1px solid rgba(99, 179, 237, 0.2);
   border-radius: 100px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--accent);
   letter-spacing: 0.04em;
 }
@@ -202,8 +203,31 @@ section:not(:first-of-type)::before {
 .app:not([data-active-section="signal"]) .signal-map .signal-links path,
 .app:not([data-active-section="signal"]) .signal-map .signal-core i,
 .app:not([data-active-section="signal"]) .signal-map .signal-node > i,
+.app:not([data-active-section="about"]) .about .gradient-text,
+.app:not([data-active-section="lab"]) .workflow-lab .gradient-text,
+.app:not([data-active-section="signal"]) .signal-map .gradient-text,
+.app:not([data-active-section="skills"]) .skills .gradient-text,
+.app:not([data-active-section="projects"]) .projects .gradient-text,
+.app:not([data-active-section="contact"]) .contact .gradient-text,
 .app:not([data-active-section="hero"]):not([data-active-section="about"]) .kinetic-track {
   animation-play-state: paused !important;
+}
+
+/* Skip paint and layout work for distant sections until they approach the viewport. */
+@supports (content-visibility: auto) {
+  .about,
+  .workflow-lab,
+  .signal-map,
+  .skills,
+  .projects,
+  .contact { content-visibility: auto; }
+
+  .about { contain-intrinsic-size: auto 980px; }
+  .workflow-lab { contain-intrinsic-size: auto 820px; }
+  .signal-map { contain-intrinsic-size: auto 900px; }
+  .skills { contain-intrinsic-size: auto 1050px; }
+  .projects { contain-intrinsic-size: auto 3600px; }
+  .contact { contain-intrinsic-size: auto 1050px; }
 }
 
 /* Give scrolling and the snow canvas priority over nonessential ambient loops. */
@@ -265,6 +289,23 @@ html.is-scrolling .signal-map .signal-core i {
   .skill-card,
   .lab-console,
   .signal-visual-frame { box-shadow: 0 18px 52px rgba(0,0,0,.3), inset 0 1px rgba(255,255,255,.025); }
+
+  .hero-desc,
+  .about-copy > p,
+  .lab-intro,
+  .console-description,
+  .signal-map-intro,
+  .projects-intro,
+  .contact-subtitle { font-size: 16px; }
+
+  @supports (content-visibility: auto) {
+    .about { contain-intrinsic-size: auto 1500px; }
+    .workflow-lab { contain-intrinsic-size: auto 1250px; }
+    .signal-map { contain-intrinsic-size: auto 1350px; }
+    .skills { contain-intrinsic-size: auto 1900px; }
+    .projects { contain-intrinsic-size: auto 5600px; }
+    .contact { contain-intrinsic-size: auto 1450px; }
+  }
 }
 
 @media (pointer: coarse) {

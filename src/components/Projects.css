@@ -45,7 +45,7 @@
   max-width: 620px;
   margin-top: 16px;
   color: var(--project-muted);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
 }
 
@@ -81,7 +81,7 @@
   background: rgba(13,20,38,.78);
   color: var(--project-muted);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -110,7 +110,7 @@
   top: 22%;
   width: 520px;
   height: 280px;
-  border-radius: 50%;
+  border-radius: 999px;
   background: radial-gradient(ellipse, rgba(99,179,237,.12), transparent 70%);
   animation: reel-aurora 8s ease-in-out infinite alternate;
 }
@@ -133,12 +133,13 @@
 .reel-topline { min-height: 58px; border-bottom: 1px solid rgba(99,179,237,.11); }
 .reel-controls { display: flex; align-items: center; gap: 13px; }
 .reel-controls button {
-  width: 34px;
+  width: 54px;
   height: 34px;
   border: 1px solid rgba(99,179,237,.22);
   border-radius: 50%;
   background: transparent;
   color: var(--project-ink);
+  font: 11px var(--font-mono);
   cursor: pointer;
   transition: color .25s ease, background .25s ease, transform .25s ease;
 }
@@ -376,7 +377,7 @@
 }
 
 .card-subtitle {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--project-muted);
   font-family: var(--font-mono);
 }
@@ -533,7 +534,7 @@
 }
 
 .card-desc {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--project-muted);
   line-height: 1.7;
   position: relative;
@@ -602,7 +603,7 @@
   position: relative;
   z-index: 2;
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   padding: 0;
   align-self: flex-start;
@@ -614,7 +615,7 @@
   display: inline-flex;
   align-self: flex-start;
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   text-decoration: none;
   transition: opacity 0.2s ease;
@@ -640,7 +641,7 @@
   .project-card:first-child .project-visual { min-height: 210px; height: 210px; }
   .project-card { padding: 20px; border-radius: 16px; }
   .card-title { font-size: 17px; }
-  .card-desc { font-size: 13px; line-height: 1.65; }
+  .card-desc { font-size: 15px; line-height: 1.65; }
   .project-reel { min-height: 560px; margin: 0 calc(50% - 50vw) 60px; }
   .reel-topline,
   .reel-footer { width: calc(100% - 32px); }

@@ -69,9 +69,9 @@ export default function Hero() {
 
           <div className="hero-actions">
             <button className="btn-primary" onClick={() => smoothScrollToSection("projects")}>
-              Explore selected work <span aria-hidden="true">↘</span>
+              Explore selected work
             </button>
-            <a className="btn-outline" href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume <span aria-hidden="true">↗</span></a>
+            <a className="btn-outline" href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
             <button className="btn-quiet" type="button" onClick={() => window.dispatchEvent(new Event("open-command-palette"))}>
               Quick jump <kbd>Ctrl K</kbd>
             </button>

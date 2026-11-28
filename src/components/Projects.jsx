@@ -270,9 +270,9 @@ export default function Projects() {
           <div className="reel-topline">
             <span>FEATURED SYSTEMS / {String(reelProjects.length).padStart(2, "0")}</span>
             <div className="reel-controls">
-              <button type="button" onClick={() => moveReel(-1)} aria-label="Previous project">←</button>
+              <button type="button" onClick={() => moveReel(-1)} aria-label="Previous project">Prev</button>
               <span>{String(reelIndex + 1).padStart(2, "0")} / {String(reelProjects.length).padStart(2, "0")}</span>
-              <button type="button" onClick={() => moveReel(1)} aria-label="Next project">→</button>
+              <button type="button" onClick={() => moveReel(1)} aria-label="Next project">Next</button>
             </div>
           </div>
 
@@ -316,7 +316,7 @@ export default function Projects() {
               <strong>{reelProjects[reelIndex]?.metric}</strong>
             </div>
             <a href={reelProjects[reelIndex]?.repo} target="_blank" rel="noreferrer">
-              Open case study <span aria-hidden="true">↗</span>
+              Open case study
             </a>
           </div>
         </div>
@@ -381,13 +381,13 @@ export default function Projects() {
                   aria-controls={detailsId}
                   onClick={() => setActive(expanded ? null : project.id)}
                 >
-                  {expanded ? "Show less ↑" : "View evidence ↓"}
+                  {expanded ? "Show less −" : "View evidence +"}
                 </button>
 
                 <div className="card-links">
-                  <a className="card-repo-link" href={project.repo} target="_blank" rel="noreferrer" style={{ color: project.color }}>GitHub repository ↗</a>
-                  {project.dockerImage ? <a className="card-repo-link" href={project.dockerImage} target="_blank" rel="noreferrer" style={{ color: project.color }}>Docker image ↗</a> : null}
-                  {project.dataset ? <a className="card-repo-link" href={project.dataset} target="_blank" rel="noreferrer" style={{ color: project.color }}>Dataset ↗</a> : null}
+                  <a className="card-repo-link" href={project.repo} target="_blank" rel="noreferrer" style={{ color: project.color }}>GitHub repository</a>
+                  {project.dockerImage ? <a className="card-repo-link" href={project.dockerImage} target="_blank" rel="noreferrer" style={{ color: project.color }}>Docker image</a> : null}
+                  {project.dataset ? <a className="card-repo-link" href={project.dataset} target="_blank" rel="noreferrer" style={{ color: project.color }}>Dataset</a> : null}
                 </div>
 
                 <div className="card-accent-line" style={{ background: project.color }} />

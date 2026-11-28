@@ -76,7 +76,7 @@
 
 .skill-focus {
   color: var(--muted);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.65;
   margin-bottom: 18px;
 }
@@ -95,7 +95,7 @@
   background: rgba(255,255,255,0.035);
   color: var(--text);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .skill-chip:hover { border-color: color-mix(in srgb, var(--skill-color) 35%, transparent); color: var(--skill-color); }
@@ -104,7 +104,7 @@
   padding-top: 16px;
   border-top: 1px solid var(--border);
   color: var(--muted);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
 }
 
@@ -113,7 +113,7 @@
   margin-bottom: 5px;
   color: var(--accent);
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -154,5 +154,5 @@
   .skills-grid { grid-template-columns: 1fr; }
   .skill-card { padding: 20px; }
   .tech-badges { gap: 8px; }
-  .tech-badge { font-size: 11px; padding: 7px 12px; }
+  .tech-badge { font-size: 12px; padding: 7px 12px; }
 }

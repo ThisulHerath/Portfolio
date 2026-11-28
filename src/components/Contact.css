@@ -40,11 +40,11 @@
   background: linear-gradient(145deg, rgba(104,211,145,0.08), var(--surface) 58%);
 }
 .availability-card::after { content: ''; position: absolute; width: 150px; height: 150px; right: -65px; top: -70px; border-radius: 50%; background: rgba(104,211,145,0.12); filter: blur(45px); }
-.availability-head { display: flex; align-items: center; gap: 8px; color: var(--accent3); font: 9px var(--font-mono); letter-spacing: 0.1em; }
+.availability-head { display: flex; align-items: center; gap: 8px; color: var(--accent3); font: 11px var(--font-mono); letter-spacing: 0.08em; }
 .availability-card h3 { margin-top: 14px; font: 700 20px var(--font-head); }
-.availability-card p { margin-top: 10px; color: var(--muted); font-size: 13px; line-height: 1.65; }
+.availability-card p { margin-top: 10px; color: var(--muted); font-size: 15px; line-height: 1.65; }
 .availability-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
-.availability-tags span { padding: 5px 8px; border: 1px solid rgba(104,211,145,0.18); border-radius: 6px; color: #9ae6b4; font: 9px var(--font-mono); }
+.availability-tags span { padding: 6px 9px; border: 1px solid rgba(104,211,145,0.18); border-radius: 6px; color: #9ae6b4; font: 11px var(--font-mono); }
 
 .info-card {
   display: flex;
@@ -78,7 +78,7 @@
 
 .info-label {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -144,7 +144,7 @@ a.info-value:hover { color: var(--accent); }
 
 .form-group label {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 14px;
   color: var(--muted);
   letter-spacing: 0.04em;
 }
@@ -157,7 +157,7 @@ a.info-value:hover { color: var(--accent); }
   padding: 12px 16px;
   color: var(--text);
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 300;
   transition: all 0.2s ease;
   resize: vertical;

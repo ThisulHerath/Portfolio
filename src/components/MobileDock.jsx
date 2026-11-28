@@ -5,8 +5,8 @@ const destinations = [
   { id: "hero", label: "Home", icon: "⌂" },
   { id: "lab", label: "Lab", icon: "◇" },
   { id: "signal", label: "Map", icon: "⬡" },
-  { id: "projects", label: "Work", icon: "↗" },
-  { id: "contact", label: "Contact", icon: "@" },
+  { id: "projects", label: "Work", icon: "▦" },
+  { id: "contact", label: "Talk", icon: "@" },
 ];
 
 function resolveActiveSection(section) {

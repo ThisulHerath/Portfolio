@@ -29,7 +29,7 @@
 .about-text p {
   margin-bottom: 16px;
   color: var(--muted);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 300;
   line-height: 1.8;
 }
@@ -75,8 +75,8 @@
 
 .working-principle span,
 .working-principle strong { display: block; }
-.working-principle span { margin-bottom: 9px; color: var(--accent); font: 9px var(--font-mono); letter-spacing: .09em; }
-.working-principle strong { max-width: 390px; color: var(--text); font: 550 14px/1.55 var(--font-body); }
+.working-principle span { margin-bottom: 9px; color: var(--accent); font: 11px var(--font-mono); letter-spacing: .08em; }
+.working-principle strong { max-width: 390px; color: var(--text); font: 550 15px/1.55 var(--font-body); }
 
 .about-links {
   display: flex;
@@ -95,7 +95,7 @@
   border-radius: 10px;
   background: rgba(13,20,38,0.68);
   color: var(--muted);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   text-decoration: none;
   transition: transform .22s ease, color .22s ease, border-color .22s ease, background .22s ease;
@@ -146,9 +146,9 @@
 
 .journey-board-head div span,
 .journey-board-head div strong { display: block; }
-.journey-board-head div span { color: var(--accent); font: 9px var(--font-mono); letter-spacing: .12em; }
-.journey-board-head div strong { margin-top: 5px; color: var(--text); font: 600 13px var(--font-body); }
-.journey-live { display: flex; align-items: center; gap: 7px; color: var(--accent3); font: 9px var(--font-mono); }
+.journey-board-head div span { color: var(--accent); font: 11px var(--font-mono); letter-spacing: .1em; }
+.journey-board-head div strong { margin-top: 5px; color: var(--text); font: 600 14px var(--font-body); }
+.journey-live { display: flex; align-items: center; gap: 7px; color: var(--accent3); font: 11px var(--font-mono); }
 .journey-live i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; box-shadow: 0 0 11px currentColor; animation: blink 1.8s ease-in-out infinite; }
 
 .journey-grid {
@@ -173,15 +173,15 @@
 .journey-item.current { background: linear-gradient(145deg, rgba(104,211,145,.1), rgba(8,14,27,.98) 60%); }
 .journey-item.current::after { content: 'OPEN'; position: absolute; right: 17px; bottom: 16px; color: rgba(104,211,145,.38); font: 700 28px var(--font-head); letter-spacing: .08em; }
 
-.journey-meta { display: flex; justify-content: space-between; color: #637697; font: 9px var(--font-mono); }
+.journey-meta { display: flex; justify-content: space-between; color: #7185a5; font: 11px var(--font-mono); }
 .journey-meta span:first-child { color: var(--accent); }
 .journey-node { position: relative; width: 54px; height: 1px; margin: 19px 0 16px; background: linear-gradient(90deg, var(--accent), transparent); }
 .journey-node i { position: absolute; left: 0; top: -3px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
 .journey-item.current .journey-node { background: linear-gradient(90deg, var(--accent3), transparent); }
 .journey-item.current .journey-node i { background: var(--accent3); box-shadow: 0 0 12px var(--accent3); }
-.journey-org { color: var(--accent2); font: 9px var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+.journey-org { color: var(--accent2); font: 11px var(--font-mono); letter-spacing: .06em; text-transform: uppercase; }
 .journey-item h3 { max-width: 210px; margin-top: 8px; color: var(--text); font: 650 16px/1.25 var(--font-head); }
-.journey-item p { position: relative; z-index: 1; max-width: 225px; margin-top: 9px; color: var(--muted); font-size: 12px; line-height: 1.55; }
+.journey-item p { position: relative; z-index: 1; max-width: 225px; margin-top: 9px; color: var(--muted); font-size: 14px; line-height: 1.55; }
 
 .journey-footer {
   position: relative;
@@ -192,7 +192,7 @@
   gap: 12px;
   min-height: 46px;
   color: #627696;
-  font: 8px var(--font-mono);
+  font: 10px var(--font-mono);
   letter-spacing: .12em;
 }
 
@@ -207,7 +207,7 @@
   .about { padding: 84px 16px; }
   .section-header { margin-bottom: 32px; }
   .about-grid { gap: 34px; }
-  .about-text p { font-size: 14px; line-height: 1.72; }
+  .about-text p { font-size: 16px; line-height: 1.72; }
   .about-text .about-lede { font-size: 21px; }
   .working-principle { padding: 18px; }
   .journey-board { border-radius: 16px; }
@@ -215,7 +215,7 @@
   .journey-board-head div strong { max-width: 210px; }
   .journey-item { min-height: 178px; padding: 17px; }
   .journey-item h3 { font-size: 14px; }
-  .journey-item p { font-size: 11px; }
+  .journey-item p { font-size: 13px; }
   .journey-item.current::after { font-size: 21px; }
 }
 

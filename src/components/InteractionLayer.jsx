@@ -12,7 +12,12 @@ export default function InteractionLayer({ activeSection }) {
     let scrollIdleTimer = 0;
 
     const createRipple = (event) => {
-      if (event.button !== 0 || !effectsRef.current) return;
+      if (
+        event.button !== 0 ||
+        event.pointerType !== "mouse" ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+        !effectsRef.current
+      ) return;
       const ripple = document.createElement("span");
       ripple.className = "click-ripple";
       ripple.style.left = `${event.clientX}px`;

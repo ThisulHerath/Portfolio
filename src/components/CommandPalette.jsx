@@ -6,7 +6,7 @@ const commands = [
   { label: "Go to home", hint: "Introduction", type: "section", target: "hero", icon: "⌂" },
   { label: "Explore my AI workflow", hint: "Interactive lab", type: "section", target: "lab", icon: "◇" },
   { label: "Open the AI system map", hint: "Interactive constellation", type: "section", target: "signal", icon: "✦" },
-  { label: "View selected projects", hint: "Case studies", type: "section", target: "projects", icon: "↗" },
+  { label: "View selected projects", hint: "Case studies", type: "section", target: "projects", icon: "▦" },
   { label: "See skills and tools", hint: "Capabilities", type: "section", target: "skills", icon: "#" },
   { label: "Contact me", hint: "Internship opportunities", type: "section", target: "contact", icon: "@" },
   { label: "Open GitHub", hint: "ThisulHerath", type: "link", target: "https://github.com/ThisulHerath", icon: "GH" },
@@ -105,7 +105,7 @@ export default function CommandPalette() {
             </button>
           )) : <p className="command-empty">No matching destination.</p>}
         </div>
-        <div className="command-footer"><span>↑↓ navigate</span><span>↵ open</span><span>esc close</span></div>
+        <div className="command-footer"><span>arrow keys navigate</span><span>enter to open</span><span>esc to close</span></div>
       </div>
     </div>
   );
